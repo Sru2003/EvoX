@@ -5,7 +5,12 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Header from "./components/Header";
+import socketIO from "socket.io-client";
+import { useEffect } from "react";
+
+
 function App() {
+ 
   return (
     <div>
       <Router>
