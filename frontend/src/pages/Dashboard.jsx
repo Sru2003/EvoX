@@ -1,8 +1,11 @@
 import React from 'react'
-
+import { Join } from '../components/CreateButton';
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className='video'>
+      
+            <Join />
+    </div>
   )
 }
 
