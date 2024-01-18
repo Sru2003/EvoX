@@ -4,6 +4,11 @@ import { Link,useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../features/auth/authSlice'
 import { reset } from '../features/auth/authSlice'
+import styles from '../index.js'
+import { motion } from 'framer-motion';
+import { navVariants } from '../utils/motion.js'
+import '../index.css'
+
 function Header () {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -14,36 +19,62 @@ function Header () {
         navigate('/')
     }
     return (
-        <header className="header">
-           
+        <motion.header 
+            variants={navVariants}
+            initial="hidden"
+            whileInView="show"
+            className={` pl-6 py-8 relative`}
+        >
+            <div className='absolute w-[50%] inset-0 gradient-01'/>
+            <div className={`${styles.innerWidth} mx-auto flex
+            justify-between gap-8`}>
+                
+
+
+            </div>
+                
+                <ul className='inline-flex justify-end text-white'>
                 <Link to='/'>
-                    <h1>EvoX</h1>
+                    <h1 className='text-[30px]
+                            leading-[30px] mr-[800px]'>
+                        EvoX
+                    </h1>
                 </Link>
-                <ul>
+                
                     {user ? (<div>
-                    <li>
-                    <button className='btn' onClick={onLogout}>
+                    <li className='special-btn'>
+                        <button onClick={onLogout}>
                        Logout
-                    </button>
+                        </button>
                     </li>
                     
-                    </div>) :(<div>
-                    <li>
+                    </div>) :(<div className='inline-flex justify-end' >
+                    <li className='special-btn mr-4'>
                     <Link to='/login'>
                        Login
                     </Link>
                     </li>
-                                    
-                    </div>)}
-                    <li>
+                      <li className='special-btn'>
                     <Link to='/register'>
-                        Register  
+                        SignUp 
                         </Link>
+                    </li>              
+                    </div>)}
+                    
+                    
+                    <button className='ml-4 mr-4 special-btn'>
+                        Join a meeting
+                    </button>
+                
+                    
+                    <li className=' object-contain mr-2 hover:scale-105 '>
+                        <img src="/menu.svg"/>
                     </li>
                     
                 </ul>
          
-        </header>
+         
+        </motion.header>
     )
 }
 
