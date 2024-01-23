@@ -6,7 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
-
+import '../index.css'
+import { motion } from 'framer-motion';
+import { slideIn,navVariants,staggerContainer } from '../utils/motion.js'
+import Footer from '../components/Footer.jsx'
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -57,47 +60,49 @@ function Login() {
   }
 
   return (
-    <>
-      <section className='heading'>
-        <h1>
-           Login
-        </h1>
-        <p>Login and start setting goals</p>
-      </section>
-
-      <section className='form'>
-        <form onSubmit={onSubmit}>
-          <div className='form-group'>
-            <input
+    <div className='h-[1000px]'>
+    <motion.div
+      variants={slideIn('right', 'tween', 0.2, 1)}
+      className='glass  flex justify-center items-center ml-[350px] mt-[50px]'>
+      <section>
+        <form onSubmit={onSubmit} >
+          <div className='my-8 b'>
+            <h1 className='text-[20px] font-serif'>
+              Enter Email:
+              <input
               type='email'
-              className='form-control'
+              className='ml-16'
               id='email'
               name='email'
               value={email}
               placeholder='Enter your email'
               onChange={onChange}
-            />
+              />
+              </h1>
           </div>
-          <div className='form-group'>
+          <div>
+           <h1 className='text-[20px] font-serif'>Enter Password:
             <input
               type='password'
-              className='form-control'
+              className='mb-10 ml-8'
               id='password'
               name='password'
               value={password}
               placeholder='Enter password'
               onChange={onChange}
-            />
+              />
+            </h1>
           </div>
 
-          <div className='form-group'>
-            <button type='submit' className='btn btn-block'>
-              Submit
+          <div className='flex justify-center'>
+            <button type='submit' className='special-btn text-[17px] px-[50px]'>
+              Login
             </button>
           </div>
         </form>
       </section>
-    </>
+      </motion.div>
+    </div>
   )
 }
 

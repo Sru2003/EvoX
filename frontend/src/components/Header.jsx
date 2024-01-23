@@ -6,7 +6,7 @@ import { logout } from '../features/auth/authSlice'
 import { reset } from '../features/auth/authSlice'
 import styles from '../index.js'
 import { motion } from 'framer-motion';
-import { navVariants } from '../utils/motion.js'
+import { navVariants } from '../utils/motion.js';
 import '../index.css'
 
 function Header () {
@@ -33,16 +33,16 @@ function Header () {
 
             </div>
                 
-                <ul className='inline-flex justify-end text-white'>
+                <ul className='inline-flex justify-end text-white flex-row'>
                 <Link to='/'>
                     <h1 className='text-[30px]
-                            leading-[30px] mr-[800px]'>
+                            leading-[30px] mr-[830px]'>
                         EvoX
                     </h1>
                 </Link>
                 
                     {user ? (<div>
-                    <li className='special-btn'>
+                    <li className='special-btn font-serif ml-[80px]'>
                         <button onClick={onLogout}>
                        Logout
                         </button>

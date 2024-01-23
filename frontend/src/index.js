@@ -47,4 +47,31 @@ const styles = {
       'md:w-[212px] sm:w-[80px] w-[60px] md:h-[108px] sm:h-[48px] h-[38px] md:border-[18px] border-[9px] rounded-r-[50px] border-white sm:mx-2 mx-[6px]',
 };
 
+export const startingFeatures = [
+  'Find a world that suits you and you want to enter',
+  'Enter the world by reading basmalah to be safe',
+  'No need to beat around the bush, just stay on the gas and have fun',
+];
+
+export const socials = [
+  {
+    name: 'twitter',
+    url: '/twitter.svg',
+  },
+  {
+    name: 'linkedin',
+    url: '/linkedin.svg',
+  },
+  {
+    name: 'instagram',
+    url: '/instagram.svg',
+  },
+  {
+    name: 'facebook',
+    url: '/facebook.svg',
+  },
+];
+
 export default styles;
+
+
