@@ -8,6 +8,7 @@ import styles from '../index.js'
 import { motion } from 'framer-motion';
 import { navVariants } from '../utils/motion.js';
 import '../index.css'
+import { Join } from './CreateButton';
 
 function Header () {
     const navigate = useNavigate()
@@ -62,8 +63,8 @@ function Header () {
                     </div>)}
                     
                     
-                    <button className='ml-4 mr-4 special-btn'>
-                        Join a meeting
+                    <button >
+                        <Join/>
                     </button>
                 
                     
