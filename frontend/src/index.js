@@ -15,7 +15,7 @@ const StrictMode = React.StrictMode;
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <App />   
     </Provider>
   </StrictMode>
 );

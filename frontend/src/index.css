@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 * {
   margin: 0;
   padding: 0;
@@ -15,16 +15,14 @@
 .glass {
   position:absolute;
   background-color: rgba(255, 255, 255, 0.1);
-  //transform:translate(50%,50%);
-  //pointer-events:none;
+  
   width:500px;
   height:400px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 30px;
-  //border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-  //background:transparent;
+
   transition:0.5s;
 
 }
