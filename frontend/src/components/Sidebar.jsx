@@ -8,7 +8,6 @@ const Sidebar = ({ children }) => {
 
   const handleCopyClick = (e) => {
     e.preventDefault();
-    console.log(me);
     navigator.clipboard.writeText(me);
   };
 
@@ -19,40 +18,43 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <form className="flex flex-col items-center p-4">
+      <form className="flex flex-col items-center  p-4  text-white">
         <div className="mb-4">
-          <label className="mb-2">Name</label>
+          <label className="ml-3 mr-3 mb-2 text-lg">Your Name</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="p-2 border border-gray-300 rounded"
+            className="ml-3 mr-3 p-2 border border-gray-300 rounded focus:outline-none"
           />
-          <CopyToClipboard text={me} className="mt-2 bg-blue-500 text-white py-2 px-4 rounded">
-            <button  onClick={handleCopyClick} className='special-btn'>
+          <CopyToClipboard text={me}>
+            <button
+              onClick={handleCopyClick}
+              className="ml-3 mr-3 mt-2 special-btn text-white py-2 px-4 rounded focus:outline-none"
+            >
               Copy Your ID
             </button>
           </CopyToClipboard>
         </div>
 
         <div>
-          <label className="mb-2">ID to call</label>
+          <label className="ml-3 mr-3 mb-2 text-lg">ID to call</label>
           <input
             type="text"
             value={idToCall}
             onChange={(e) => setIdToCall(e.target.value)}
-            className="p-2 border border-gray-300 rounded"
+            className="ml-3 mr-3 p-2 border border-gray-300 rounded focus:outline-none"
           />
           {callAccepted && !callEnded ? (
             <button
-              className="mt-2 bg-red-500 text-white py-2 px-4 rounded"
+              className="ml-3 mr-3 mt-2 bg-red-500 text-white py-2 px-4 rounded focus:outline-none"
               onClick={leaveCall}
             >
               Hang Up
             </button>
           ) : (
             <button
-              className="mt-2 bg-green-500 text-white py-2 px-4 rounded"
+              className="ml-3 mr-3  mt-2 special-btn text-white py-2 px-4 rounded focus:outline-none"
               onClick={handleCallClick}
             >
               Call

@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import { navVariants } from '../utils/motion.js';
 import '../index.css'
 import { Join } from './CreateButton';
-
+import { NavItem,NavLink } from 'reactstrap'
 
 
 function Header() {
@@ -28,7 +28,7 @@ function Header() {
       variants={navVariants}
       initial="hidden"
       whileInView="show"
-      className={`pl-6 py-8 relative`}
+      className={`pl-6 py-8 relative `}
     >
       <div className='absolute w-[50%] inset-0 gradient-01' />
       <div className={`mx-auto flex justify-between gap-8 ${styles.innerWidth}`}>
@@ -45,24 +45,31 @@ function Header() {
               </li>
             </div>
           ) : (
-            <div className='inline-flex justify-end'>
-              <li className='special-btn mr-4'>
-                <Link to='/login'>Login</Link>
+            <div className='flex items-center'>
+              <li>
+              <NavItem>
+            <NavLink href="/login" className='special-btn mr-4 py-3'>Login</NavLink>
+          </NavItem>
               </li>
-              <li className='special-btn'>
-                <Link to='/register'>SignUp</Link>
-              </li>
+              <li >
+              <NavItem>
+            <NavLink href="/register" className='special-btn mr-4 py-3'>Register</NavLink>
+          </NavItem>              </li>
             </div>
           )}
 
-          <div className='flex items-center'>
-            <Join />
-           
+          <div className='flex items-center' >
+         
+            <NavItem>
+            <NavLink href="/room" className='special-btn mr-4 py-3'>Create event</NavLink>
+          </NavItem>
           </div>
-          <div>
-            <li className='special-btn mr-4'>
-              
-            </li>
+          <div className='flex items-center'>
+            
+            <NavItem>
+            <NavLink href="/events" className='special-btn mr-4 py-3'>Create event</NavLink>
+          </NavItem>
+           
           </div>
         </ul>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { Button, ButtonGroup, Container } from "reactstrap";
-//import api from '../../Services/api';
+import api from '../../Services/api';
 import "./myRegistration.css";
 
 export default function MyRegistrations() {

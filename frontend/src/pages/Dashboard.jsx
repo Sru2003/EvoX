@@ -12,7 +12,7 @@ import Footer from '../components/Footer.jsx';
 const Dashboard = () => {
   const playerRef = useRef(null);
   return (
-    <section className='justify-end'>
+    <section className='justify-end bg-primary-black overflow-hidden"'>
       <motion.div
         variants={staggerContainer}
         initial="hidden"
