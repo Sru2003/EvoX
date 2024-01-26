@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState,useReducer } from 'react';
-import { peersReducer } from './peerReducer';
-import  {addPeerAction,removePeerAction}  from './peerActions';
+import { peersReducer } from './peerReducer.tsx';
+import  {addPeerAction,removePeerAction}  from './peerActions.tsx';
 
 import Peer from 'peerjs';
 import {v4} from 'uuid';
@@ -33,9 +33,14 @@ export const RoomProvider=({ children })=>{
     const getUsers=({participants})=>{
         console.log({participants});
     };
-    const removePeer=({peerId})=>{
-        dispatch(removePeerAction(peerId));
+    const removePeer = ({ peerId = null }) => {
+        if (peerId) {
+            dispatch(removePeerAction(peerId));
+        } else {
+            console.warn('peerId is null in user-disconnected event');
+        }
     };
+    
     useEffect(() => {
         const meId=v4();
 
@@ -43,8 +48,10 @@ export const RoomProvider=({ children })=>{
         setMe(peer);
 
         try{
-            navigator.mediaDevices.getUserMedia({video:true,audio:true})
-            .then((stream)=>{setStream(stream);}
+            navigator.mediaDevices
+            .getUserMedia({video:true,audio:true})
+            .then((stream)=>{
+                setStream(stream);}
             )
             }catch(err){
             console.log(err);
