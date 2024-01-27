@@ -4,15 +4,15 @@ import { motion } from 'framer-motion';
 import { slideIn, staggerContainer, textVariant } from '../utils/motion.js';
 import '../index.css';
 //import ReactPlayer from 'react-player';
-import AboutSection from './AboutSection';
-import GetStarted from './GetStarted';
-import ExploreSection from './ExploreSection';
-import NewSection from './NewSection';
+import AboutSection from '../sections/AboutSection.jsx';
+import GetStarted from '../sections/GetStarted.jsx';
+import ExploreSection from '../sections/ExploreSection.jsx';
+import NewSection from '../sections/NewSection.jsx';
 import Footer from '../components/Footer.jsx';
 const Dashboard = () => {
   const playerRef = useRef(null);
   return (
-    <section className={`${styles.yPaddings} sm:pl-16 pl-6 `}>
+    <section className='justify-end bg-primary-black overflow-hidden"'>
       <motion.div
         variants={staggerContainer}
         initial="hidden"
