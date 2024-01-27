@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   createEvent(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.statusCode(401);
       } else {
@@ -40,7 +40,7 @@ module.exports = {
   },
 
   delete(req, res) {
-    jwt.verify(req.token, "secret", async (err) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err) => {
       if (err) {
         res.statusCode(401);
       } else {
@@ -57,7 +57,7 @@ module.exports = {
     });
   },
   getEventDetails(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {

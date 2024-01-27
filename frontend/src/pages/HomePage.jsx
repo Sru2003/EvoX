@@ -9,10 +9,11 @@ import GetStarted from '../sections/GetStarted.jsx';
 import ExploreSection from '../sections/ExploreSection.jsx';
 import NewSection from '../sections/NewSection.jsx';
 import Footer from '../components/Footer.jsx';
-const Dashboard = () => {
+const HomePage = () => {
   const playerRef = useRef(null);
   return (
     <section className='justify-end bg-primary-black overflow-hidden"'>
+
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -65,4 +66,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default HomePage

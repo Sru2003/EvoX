@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { register, reset } from '../features/auth/authSlice'; // Fixed the casing in the import statement
-import Spinner from '../components/Spinner'; // Added import for Spinner
+import { register, reset } from '../features/auth/authSlice.js'; // Fixed the casing in the import statement
+import Spinner from '../components/Spinner.jsx'; // Added import for Spinner
 import 'react-toastify/dist/ReactToastify.css'; // Added import for react-toastify CSS
 import '../index.css'
 import { motion } from 'framer-motion';
@@ -72,7 +72,7 @@ function Register() {
       <section className="form">
         <form onSubmit={onSubmit}>
           <div className="my-8">
-            <h1 className='text-[19px] font-serif text-white'>
+            <h1 className='text-[19px] font-serif '>
               Enter username:
               <input type="text"
               className='ml-14'
@@ -84,7 +84,7 @@ function Register() {
               </h1>
           </div>
           <div>
-            <h1 className='text-[19px] font-serif text-white'>
+            <h1 className='text-[19px] font-serif '>
               Enter E-mail:
             <input type="email"
               className='mb-10 ml-[85px]'
@@ -95,7 +95,7 @@ function Register() {
                 onChange={onChange} />
               </h1>
           </div>
-          <h1 className='text-[19px] font-serif text-white'>
+          <h1 className='text-[19px] font-serif '>
             Enter Password:
             <input type="password"
               className='mb-10 ml-16'
@@ -107,7 +107,7 @@ function Register() {
              </h1> 
           
           <div>
-            <h1 className='text-[19px] font-serif text-white'>
+            <h1 className='text-[19px] font-serif '>
               Re-Enter Password:
               <input type="password" 
               className='mb-10 ml-8'

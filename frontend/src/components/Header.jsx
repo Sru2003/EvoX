@@ -40,36 +40,37 @@ function Header() {
 
           {user ? (
             <div>
-              <li className='special-btn font-serif'>
-                <button onClick={onLogout}>Logout</button>
+              <li className='special-btn mr-4 py-3'>
+                <button onClick ={onLogout}>Logout</button>
               </li>
             </div>
           ) : (
             <div className='flex items-center'>
-              <li>
+              <li className='special-btn mr-4 py-3'>
               <NavItem>
-            <NavLink href="/login" className='special-btn mr-4 py-3'>Login</NavLink>
+            <NavLink href="/login" >Login</NavLink>
           </NavItem>
               </li>
-              <li >
+              <li className='special-btn mr-4 py-3' >
               <NavItem>
-            <NavLink href="/register" className='special-btn mr-4 py-3'>Register</NavLink>
+            <NavLink href="/register" >Register</NavLink>
           </NavItem>              </li>
             </div>
           )}
 
           <div className='flex items-center' >
-         
+         <li className='special-btn mr-4 py-3'>
             <NavItem>
-            <NavLink href="/room" className='special-btn mr-4 py-3'>Create event</NavLink>
+            <NavLink href="/room" >Join Meeting</NavLink>
           </NavItem>
+          </li>
           </div>
           <div className='flex items-center'>
-            
+          <li className='special-btn mr-4 py-3'>
             <NavItem>
-            <NavLink href="/events" className='special-btn mr-4 py-3'>Create event</NavLink>
+            <NavLink href="/dashboard" >Events</NavLink>
           </NavItem>
-           
+          </li>
           </div>
         </ul>
       </div>

@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/userModel");
+const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 module.exports = {
   async store(req, res) {
@@ -24,7 +24,7 @@ module.exports = {
           firstName: user.firstName,
           lastName: user.lastName,
         };
-        return jwt.sign({ user: userResponse }, "secret", (err, token) => {
+        return jwt.sign({ user: userResponse }, process.env.JWT_SECRET, (err, token) => {
           return res.json({
             user: token,
             user_id: userResponse._id,
