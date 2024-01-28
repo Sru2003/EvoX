@@ -13,9 +13,9 @@ const root = createRoot(container);
 const StrictMode = React.StrictMode;
 
 root.render(
-  <StrictMode>
+  <StrictMode  >
     <Provider store={store}>
-      <App />
+      <App />   
     </Provider>
   </StrictMode>
 );
