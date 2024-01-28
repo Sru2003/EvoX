@@ -77,8 +77,8 @@ app.use(cors());
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-//app.use('/api/home', require('./routes/home'))
-//app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/home', require('./routes/home'))
+app.use('/api/users', require('./routes/userRoutes'))
 app.use(router);
 //app.listen(port, () => console.log(`Server started on port ${port}`))
 server.listen(port, () => console.log(`Server running on port ${port}`))

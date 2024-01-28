@@ -27,7 +27,7 @@ export default function Dashboard({ history }) {
   }, []);
 
   const socket = useMemo(() =>
-    socketio('https://locahost:3000/', { query: { user: user_id } }),
+    socketio('http://locahost:3000/', { query: { user: user_id } }),
     [user_id]
   );
 
