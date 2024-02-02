@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -8,8 +7,7 @@ import Spinner from '../components/Spinner.jsx'; // Added import for Spinner
 import 'react-toastify/dist/ReactToastify.css'; // Added import for react-toastify CSS
 import '../index.css'
 import { motion } from 'framer-motion';
-import { slideIn,navVariants,staggerContainer } from '../utils/motion.js'
-
+import { slideIn, navVariants, staggerContainer } from '../utils/motion.js'
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -18,8 +16,8 @@ function Register() {
     password: '',
     password2: ''
   });
-  const { name, email, password, password2 } = formData
 
+  const { name, email, password, password2 } = formData
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -60,73 +58,53 @@ function Register() {
   }
 
   return (
-    <div className='h-[1000px]'>
-    <motion.div
-      variants={slideIn('right', 'tween', 0.2, 1)}
-      className='glass flex justify-center items-center  ml-[350px] mt-[50px]'
-    >
-      <section>
-        {/* <h1>Register</h1>
-        <p> Please create an account</p> */}
-      </section>
-      <section className="form">
-        <form onSubmit={onSubmit}>
-          <div className="my-8">
-            <h1 className='text-[19px] font-serif '>
-              Enter username:
+    <div className='h-screen w-screen flex justify-center items-center' style={{ backgroundImage: `url('/bkgnd.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className='glass flex justify-center items-center'>
+        <section>
+          <form onSubmit={onSubmit}>
+            <div className="my-8 flex justify-center items-center">
               <input type="text"
-              className='ml-14'
-              id='name'
-              name='name'
-              value={name}
-              placeholder='Enter your name'
-              onChange={onChange} />
-              </h1>
-          </div>
-          <div>
-            <h1 className='text-[19px] font-serif '>
-              Enter E-mail:
-            <input type="email"
-              className='mb-10 ml-[85px]'
-              id='email'
-              name='email'
-              value={email}
-              placeholder='Enter your email'
+                className=''
+                id='name'
+                name='name'
+                value={name}
+                placeholder='Enter your name'
                 onChange={onChange} />
-              </h1>
-          </div>
-          <h1 className='text-[19px] font-serif '>
-            Enter Password:
+            </div>
+            <div>
+              <input type="email"
+                className='mb-10'
+                id='email'
+                name='email'
+                value={email}
+                placeholder='Enter your email'
+                onChange={onChange} />
+            </div>
             <input type="password"
-              className='mb-10 ml-16'
+              className='mb-10'
               id='password'
               name='password'
               value={password}
               placeholder='Enter password'
-                onChange={onChange} />
-             </h1> 
-          
-          <div>
-            <h1 className='text-[19px] font-serif '>
-              Re-Enter Password:
-              <input type="password" 
-              className='mb-10 ml-8'
-              id='password2'
-              name='password2'
-              value={password2}
-              placeholder='Confirm password'
               onChange={onChange} />
-            </h1>
-          </div>
-          <div className='flex justify-center'>
-            <button type='submit' className='special-btn text-[17px] px-[50px] btn-block'>
-              SignUp
-            </button>
-          </div>
-        </form>
-      </section>
-      </motion.div>
+            <div>
+              <input type="password"
+                className='mb-10 '
+                id='password2'
+                name='password2'
+                value={password2}
+                placeholder='Confirm password'
+                onChange={onChange} />
+            </div>
+            <div className='flex justify-center'>
+              <button type='submit' className='special-btn text-[17px] px-[50px] btn-block'>
+                SignUp
+              </button>
+            </div>
+          </form>
+        </section>
       </div>
+    </div>
   );
 }
 

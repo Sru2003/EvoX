@@ -22,13 +22,14 @@ const GetStarted = () => {
       <motion.div
           variants={planetVariants('left')}
           className={`${styles.flexCenter} flex-1`}
-      >
+        >
+          <div className='object-contain grad rounded-full mt-20'>
           <img
-            src='/whats-new.png'
+            src='/Circle2.png'
             alt='get-started'
-            className='w-[90%] h-[90%] object-contain'
+            className='px-2 py-2 h-[300px]'
           />
-          
+          </div>
         </motion.div>
         
         <motion.div

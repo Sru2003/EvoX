@@ -1,6 +1,4 @@
-
 import { useState, useEffect } from 'react'
-//import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -8,8 +6,10 @@ import { login, reset } from '../features/auth/authSlice.js'
 import Spinner from '../components/Spinner.jsx'
 import '../index.css'
 import { motion } from 'framer-motion';
-import { slideIn,navVariants,staggerContainer } from '../utils/motion.js'
-import Footer from '../components/Footer.jsx'
+import { slideIn, navVariants, staggerContainer } from '../utils/motion.js'
+
+import { MdLock, MdEmail } from "react-icons/md";
+
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -60,48 +60,41 @@ function Login() {
   }
 
   return (
-    <div className='h-[1000px]'>
-    <motion.div
-      variants={slideIn('right', 'tween', 0.2, 1)}
-      className='glass  flex justify-center items-center ml-[350px] mt-[50px]'>
-      <section>
-        <form onSubmit={onSubmit} >
-          <div className='my-8 b'>
-            <h1 className='text-[20px] font-serif'>
-              Enter Email:
+    <div className='h-screen w-screen flex justify-center items-center' style={{ backgroundImage: `url('/bkgnd.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className='glass  flex justify-center items-center'>
+        <section>
+          <form onSubmit={onSubmit}>
+            <div className='my-8 flex justify-center items-center'>
               <input
-              type='email'
-              className='ml-16'
-              id='email'
-              name='email'
-              value={email}
-              placeholder='Enter your email'
-              onChange={onChange}
-              />
-              </h1>
-          </div>
-          <div>
-           <h1 className='text-[20px] font-serif'>Enter Password:
-            <input
-              type='password'
-              className='mb-10 ml-8'
-              id='password'
-              name='password'
-              value={password}
-              placeholder='Enter password'
-              onChange={onChange}
-              />
-            </h1>
-          </div>
+                  type='email'
+                  className=''
+                  id='email'
+                  name='email'
+                  value={email}
+                  placeholder='Enter your email'
+                  onChange={onChange}
+                />
+            </div>
+            <div>
+                <input
+                  type='password'
+                  className='mb-10'
+                  id='password'
+                  name='password'
+                  value={password}
+                  placeholder='Enter password'
+                  onChange={onChange}
+                />
+            </div>
 
-          <div className='flex justify-center'>
-            <button type='submit' className='special-btn text-[17px] px-[50px]'>
-              Login
-            </button>
-          </div>
-        </form>
-      </section>
-      </motion.div>
+            <div className='flex justify-center'>
+              <button type='submit' className='special-btn text-[17px] px-[50px]'>
+                Login
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
   )
 }
