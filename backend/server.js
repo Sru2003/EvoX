@@ -48,8 +48,13 @@ const io = new Server(server,
 // });
 
 const users = {};
+const connectedUsers = [];
 
 io.on('connection', (socket) => {
+  const { user } = socket.handshake.query;
+
+  connectedUsers[user] = socket.id
+
   socket.emit('me', socket.id);
 
   socket.on('disconnect', () => {
@@ -72,13 +77,18 @@ io.on('connection', (socket) => {
   });
 });
 
+app.use((req, res, next) => {
+  req.io = io;
+  req.connectedUsers = connectedUsers;
+  return next();
+})
 app.use(cors());
 
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use('/api/home', require('./routes/home'))
-app.use('/api/users', require('./routes/userRoutes'))
+//app.use('/api/home', require('./routes/home'))
+//app.use('/api/users', require('./routes/userRoutes'))
 app.use(router);
 //app.listen(port, () => console.log(`Server started on port ${port}`))
 server.listen(port, () => console.log(`Server running on port ${port}`))

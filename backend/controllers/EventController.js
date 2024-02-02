@@ -12,8 +12,8 @@ module.exports = {
       } else {
         const { title, description, price, eventType, date } = req.body;
         // console.log("Event type is " + price);
-        const { location } = req.file;
-
+        const  location  = req.file.location;
+        
         const user = await User.findById(authData.user._id);
 
         if (!user) {
@@ -27,7 +27,7 @@ module.exports = {
             eventType,
             price: parseFloat(price),
             user: authData.user._id,
-            thumbnail: location,
+            thumbnail:location,
             date,
           });
 

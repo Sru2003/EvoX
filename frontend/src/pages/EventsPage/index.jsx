@@ -12,10 +12,12 @@ import {
   InputGroupText,
   Label,
 } from "reactstrap";
+import FileBase from 'react-file-base64';
 
+import { useNavigate } from "react-router-dom";
 import "./events.css";
 
-function EventsPage({ history }) {
+function EventsPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState();
@@ -26,7 +28,7 @@ function EventsPage({ history }) {
   const [success, setSuccess] = useState(false);
   const [dropdownOpen, setOpen] = useState(false);
   const user = localStorage.getItem("user");
-
+  const navigate=useNavigate();
   useEffect(() => {
     var today = new Date();
     var dd = today.getDate();
@@ -42,7 +44,7 @@ function EventsPage({ history }) {
     document.getElementById("datefield").setAttribute("min", today);
 
     if (!user) {
-      history.push("/login");
+      navigate("/login");
     }
   }, []);
 
@@ -72,11 +74,11 @@ function EventsPage({ history }) {
         date !== "" &&
         thumbnail !== null
       ) {
-        await api.post("/viewevent", eventData, { headers: { user } });
+        await api.post("/event", eventData, { headers: { user, "Content-Type": "multipart/form-data", } });
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
-          history.push("/");
+          navigate("/");
         }, 2000);
       } else {
         setError(true);
@@ -172,6 +174,7 @@ function EventsPage({ history }) {
             type="file"
             onChange={(event) => setThumbnail(event.target.files[0])}
           />
+          {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setThumbnail(base64)} /> */}
         </FormGroup>
 
         <FormGroup className="flex justify-between">
@@ -180,7 +183,7 @@ function EventsPage({ history }) {
           </Button>
           <Button
             className="secondary-btn special-btn"
-            onClick={() => history.push("/")}
+            onClick={() => navigate("/")}
             color="danger"
             size="lg"
           >

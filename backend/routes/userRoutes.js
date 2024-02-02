@@ -1,19 +1,21 @@
 
 const express = require ('express')
 const router = express.Router()
-const { registerUser,loginUser,getMe } = require('../controllers/userControllers')
-const { protect } = require('../middleware/authMiddleware')
-
-router.post('/',registerUser)
-router.post('/login',loginUser)
-router.get('/me',protect,getMe)
-
+//const { registerUser,loginUser,getMe } = require('../controllers/userControllers')
+const verifyToken = require('../config/verifyToken')
 const multer = require("multer");
+const uploadConfig = require("../config/upload");
 
+const upload = multer(uploadConfig);
+
+// router.post('/',registerUser)
+// router.post('/login',loginUser)
+// router.get('/me',verifyToken,getMe)
 
 const EventController = require("../controllers/EventController");
 const DashboardController = require("../controllers/DashboardController");
-
+const LoginController = require("../controllers/LoginController");
+const UserController = require("../controllers/UserController");
 
 const RegistrationController = require("../controllers/RegistrationController");
 const ApprovalController = require("../controllers/ApprovalController");
@@ -26,65 +28,65 @@ router.get("/status", (req, res) => {
 //Endpoints:
 
 //Registration(for events)
-router.post("/registration/:eventId", protect, RegistrationController.create);
+router.post("/registration/:eventId", verifyToken, RegistrationController.create);
 router.get(
   "/registration",
-  protect,
+  verifyToken,
   RegistrationController.getMyRegistrations
 );
 router.get(
   "/event/participants/:eventId",
-  protect,
+  verifyToken,
   RegistrationController.getEventParticipants
 );
 router.get(
   "/registration/:registrationId",
-  protect,
+  verifyToken,
   RegistrationController.getRegistration
 );
 //Approve
 router.post(
   "/registration/:registrationId/approval",
-  protect,
+  verifyToken,
   ApprovalController.approval
 );
 //Reject
 router.post(
   "/registration/:registrationId/rejection",
-  protect,
+  verifyToken,
   RejectionController.rejection
 );
 
-// //Login Controller
-// router.post("/login", LoginController.store);
+//Login Controller
+router.post("/login", LoginController.store);
 
 //Dashboard
-router.get("/dashboard", protect, DashboardController.getAllEvents);
+router.get("/dashboard", verifyToken, DashboardController.getAllEvents);
 router.get(
   "/dashboard/:eventType",
-  protect,
+  verifyToken,
   DashboardController.getAllEvents
 );
-router.get("/user/events", protect, DashboardController.getEventsByUserId);
-router.get("/event/:eventId", protect, DashboardController.getEventById);
+router.get("/user/events", verifyToken, DashboardController.getEventsByUserId);
+router.get("/event/:eventId", verifyToken, DashboardController.getEventById);
 
 //Event
 router.post(
   "/event",
-  protect,
-  // uploadToS3.single("thumbnail"),
+  verifyToken,
+  upload.single("thumbnail"),
   EventController.createEvent
 );
-router.delete("/event/:eventId", protect, EventController.delete);
+router.delete("/event/:eventId", verifyToken, EventController.delete);
 
 // //User
-// router.post("/user/register", UserController.createUser);
-// router.get("/user/:userId", UserController.getUserById);
+router.post("/user/register", UserController.createUser);
+router.get("/user/:userId", UserController.getUserById);
 
 //Get Event Details
 router.get(
   "/events/details/:eventId",
-  protect,
+  verifyToken,
   EventController.getEventDetails
 );
 
