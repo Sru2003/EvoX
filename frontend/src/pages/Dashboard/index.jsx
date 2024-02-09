@@ -5,8 +5,8 @@ import { Container } from 'reactstrap';
 import { Button, ButtonGroup, Alert, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { Link } from 'react-router-dom';
 import socketio from 'socket.io-client';
-
-export default function Dashboard({ history }) {
+import { useNavigate } from "react-router-dom";
+export default function Dashboard() {
   const [events, setEvents] = useState([]);
   const user = localStorage.getItem("user");
   const user_id = localStorage.getItem("user_id");
@@ -19,7 +19,7 @@ export default function Dashboard({ history }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [eventRequestMessage, setEventRequestMessage] = useState('');
   const [eventRequestSuccess, setEventRequestSuccess] = useState(false);
-
+  const navigate = useNavigate();
   const toggle = () => setDropdownOpen(!dropdownOpen);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Dashboard({ history }) {
   }, []);
 
   const socket = useMemo(() =>
-    socketio('http://locahost:3000/', { query: { user: user_id } }),
+    socketio('http://localhost:3000/', { query: { user: user_id } }),
     [user_id]
   );
 
@@ -48,7 +48,7 @@ export default function Dashboard({ history }) {
       });
       setEvents(response.data.events);
     } catch (error) {
-      history.push("/login");
+      navigate("/login");
     }
   };
 
@@ -81,7 +81,7 @@ export default function Dashboard({ history }) {
       response.data.events.sort((a, b) => { return new Date(a.date) - new Date(b.date); });
       setEvents(response.data.events);
     } catch (error) {
-      history.push("/login");
+      navigate("/login");
     }
   };
 
@@ -108,7 +108,7 @@ export default function Dashboard({ history }) {
   const viewParticipantsHandler = async (event) => {
     try {
       localStorage.setItem("eventId", event);
-      history.push('/event/participants')
+      navigate('/event/participants')
     } catch (error) {
       console.log(error);
     }
@@ -152,12 +152,12 @@ export default function Dashboard({ history }) {
     setEventRequests(newEvent);
   }
   const redirectHandler = (e) => {
-    history.push("/events");
+    navigate("/events");
   }
 
   const linkToEvent = (_id) => {
     localStorage.setItem("eventId", _id)
-    history.push('/eventdetails')
+    navigate('/eventdetails')
     // console.log('abc')
   }
   return (
@@ -231,7 +231,7 @@ export default function Dashboard({ history }) {
                     )}
                 </header>
                 <li className="li-card">
-                  <div className="li-picture" style={{ backgroundImage: `url(${event.thumbnail_url})` }} />
+                  <div className="li-picture" style={{ backgroundImage: `url(${event.thumbnail_url})`,backgroundSize: 'cover',backgroundPosition : 'center' }} />
                   <div>
                     <h2 style={{ height: "48px" }}>{event.title}</h2>
                     <p><b>Date:</b> {moment(event.date).format("LL")}</p>

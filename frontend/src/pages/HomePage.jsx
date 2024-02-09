@@ -3,7 +3,7 @@ import styles from '../index.js'
 import { motion } from 'framer-motion';
 import { slideIn, staggerContainer, textVariant } from '../utils/motion.js';
 import '../index.css';
-import TopNav from '../components/Header.jsx';
+import TopNav from '../components/TopNav.jsx';
 //import ReactPlayer from 'react-player';
 import AboutSection from '../sections/AboutSection.jsx';
 import GetStarted from '../sections/GetStarted.jsx';

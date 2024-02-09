@@ -20,8 +20,5 @@ const EventSchema = new mongoose.Schema(
   }
 );
 
-EventSchema.virtual("thumbnail_url").get(function () {
-  return this.thumbnail;
-});
 
 module.exports = mongoose.model("Event", EventSchema);
