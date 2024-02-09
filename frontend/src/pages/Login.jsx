@@ -117,7 +117,7 @@ import SignIn from '../assets/LoginRegister/images/signin-image.jpg'
 
 import { MdLock, MdEmail } from "react-icons/md";
 
-function  Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -139,7 +139,7 @@ function  Login() {
 
         setIsLoggedIn(true);
         navigate('/');
-       
+
       } else {
         const { message } = response.data;
         setError(true);
@@ -156,50 +156,66 @@ function  Login() {
   };
 
   return (
-    <div className='h-[1000px]'>
-    <motion.div
-      variants={slideIn('right', 'tween', 0.2, 1)}
-      className='glass  flex justify-center items-center ml-[350px] mt-[50px]'>
-      <section>
-        <form onSubmit={onSubmit} >
-          <div className='my-8 b'>
-            <h1 className='text-[20px] font-serif'>
-              Enter Email:
-              <input
-              type='email'
-              className='ml-16'
-              id='email'
-              name='email'
-              value={email}
-              placeholder='Enter your email'
-              onChange={onChange}
-              />
-              </h1>
-          </div>
-          <div>
-           <h1 className='text-[20px] font-serif'>Enter Password:
-            <input
-              type='password'
-              className='mb-10 ml-8'
-              id='password'
-              name='password'
-              value={password}
-              placeholder='Enter password'
-              onChange={onChange}
-              />
-            </h1>
-          </div>
 
-          <div className='flex justify-center'>
-            <button type='submit' className='special-btn text-[17px] px-[50px]'>
-              Login
-            </button>
+    <div className="main">
+      <section className="sign-in">
+        <div className="container">
+          <div className="signin-content">
+            <div className="signin-image">
+              <figure><img src={SignIn} alt="sing up image" /></figure>
+              <a className="signup-image-link"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  navigate("/register");
+                }}>Create an account</a>
+            </div>
+
+            <div className="signin-form">
+              <h2 className="form-title">Log In</h2>
+              <Form onSubmit={handleSubmit}>
+                <div className="form-group" style={{ justifyContent: "center" }}>
+                  <label for="your_name"><MdEmail fontSize="large" /></label>
+                  <input
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                    }}
+                    type="email"
+                    name="email"
+                    id="exampleEmail"
+                    placeholder="Enter your email here"
+                  />
+                </div>
+                <div className="form-group" style={{ justifyContent: "center" }}>
+                  <label for="your_pass"><MdLock fontSize="large" /></label>
+                  <input
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                    type="password"
+                    name="password"
+                    id="examplePassword"
+                    placeholder="Enter your password here"
+                  />
+                </div>
+                <FormGroup>
+                  <Button color="success" className="submit-btn " size="lg">Submit</Button>
+                </FormGroup>
+
+              </Form>
+              {errorMessage ? (
+                <Alert color="danger" className="event-validation">
+                  {errorMessage}
+                </Alert>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
-        </form>
+        </div>
       </section>
-      </motion.div>
+
     </div>
   );
 }
 
-export default Login
+export default Login;
