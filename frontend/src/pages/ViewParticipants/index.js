@@ -23,7 +23,7 @@ export default function ViewParticipants() {
     }
 
     return (
-        <Container style={{marginTop:"10px"}} >
+        <Container style={{marginTop:"10px", color:"black"}} >
             <ul className="participants">
                 <h1>Total participants:{(eventParticipants.length)}</h1>
                 {eventParticipants.map(participant => (

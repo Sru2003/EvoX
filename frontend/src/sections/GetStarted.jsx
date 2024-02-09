@@ -22,13 +22,14 @@ const GetStarted = () => {
       <motion.div
           variants={planetVariants('left')}
           className={`${styles.flexCenter} flex-1`}
-      >
+        >
+          <div className='object-contain grad rounded-full mt-20'>
           <img
-            src='/whats-new.png'
+            src='/Circle2.png'
             alt='get-started'
-            className='w-[90%] h-[90%] object-contain'
+            className='px-2 py-2 h-[300px]'
           />
-          
+          </div>
         </motion.div>
         
         <motion.div
@@ -39,13 +40,9 @@ const GetStarted = () => {
           <TitleText title={<>Get started with just a clicks</>} />
           <div className='mt-[31px] flex flex-col max-w-[370px]
           gap=[24px]'>
-            {startingFeatures.map((feature, index)=>(
             <Startsteps
-              key={feature}
-              number={index + 1}
-              text={feature}
-            />
-            ))}
+              
+              />
           </div>
         </motion.div>
       </motion.div>

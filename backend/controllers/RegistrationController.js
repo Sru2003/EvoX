@@ -20,10 +20,16 @@ module.exports = {
           event: eventId
         });
 
-        await registration
-          .populate("event")
-          .populate("user", "-password")
-          .execPopulate();
+        // await registration
+        //   .populate("event")
+        //   .populate("user", "-password")
+        //   .execPopulate();
+
+await registration.populate("event")
+const populatedRegistration = await registration.populate("user", "-password")
+
+
+console.log(populatedRegistration);
 
         registration.owner = registration.event.user;
         registration.eventTitle = registration.event.title;
@@ -51,7 +57,7 @@ module.exports = {
       await registration
         .populate("event")
         .populate("user", "-password")
-        .execPopulate();
+        
       return res.json(registration);
     } catch (error) {
       return res.send(400).send(json({ message: "Registration not found" }));
@@ -74,7 +80,26 @@ module.exports = {
       }
     })
   },
-
+  // getMyRegistrations(req, res) {
+  //   jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
+  //     if (err) {
+  //       res.sendStatus(401);
+  //     } else {
+  //       try {
+  //         const registrationArr = await Registration.find({ "owner": authData.user._id });
+  //         const populatedRegistrations = await Promise.all(registrationArr.map(async (registration) => {
+  //           return await registration.populate("event").populate("user", "-password").execPopulate();
+  //         }));
+  
+  //         return res.json(populatedRegistrations);
+  //       } catch (error) {
+  //         console.log(error);
+  //         res.status(500).json({ error: "Internal Server Error" });
+  //       }
+  //     }
+  //   });
+  // },
+  
   getEventParticipants(req, res) {
     jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {

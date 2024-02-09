@@ -162,17 +162,7 @@ export default function Dashboard() {
   }
   return (
     <>
-      <section id="banner">
-        <div className="inner">
-          <h1>Down To Meet:<br /> <span>Host in-person events for people with same interests</span></h1>
-          <ul className="actions">
-            <Button style={{ backgroundColor: "#212F3C", border: "2px solid white", padding: "10px" }}
-              onClick={redirectHandler}>
-              Get Started
-            </Button>
-          </ul>
-        </div>
-      </section>
+      
       <ul className="notifications">
         {eventRequests.map(request => {
           return (
@@ -198,7 +188,7 @@ export default function Dashboard() {
         : ""}
       <Container>
         <div className="dashboard-page">
-          <div className="filter-panel">
+          {/* <div className="filter-panel">
             <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg">
               <DropdownToggle color="success" caret>
                 Filter
@@ -211,7 +201,7 @@ export default function Dashboard() {
                 <DropdownItem onClick={myEventsHandler} active={rSelected === "myEvents"}>My Events</DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          </div>
+          </div> */}
           <ul className="events-list">
             {events.map((event) => (
               <li key={event._id}>
@@ -224,18 +214,21 @@ export default function Dashboard() {
                         onClick={() => deleteEventHandler(event._id)}
                       >
                         Delete
-                    </Button>
+                      </Button>
                     </div>
                   ) : (
-                      ""
-                    )}
+                    ""
+                  )}
                 </header>
                 <li className="li-card">
-                  <div className="li-picture" style={{ backgroundImage: `url(${event.thumbnail_url})`,backgroundSize: 'cover',backgroundPosition : 'center' }} />
+                  <div className="li-picture" style={{ backgroundImage: `url(${event.thumbnail_url})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
                   <div>
                     <h2 style={{ height: "48px" }}>{event.title}</h2>
                     <p><b>Date:</b> {moment(event.date).format("LL")}</p>
-                    <p><b>Price:</b> ₹{event.price}</p>
+                    <p><b>Price:</b> ₹{event.price} </p>
+                    <p>Status: {event.approved ? 'Approved' : 'Pending Approval'}</p>
+
+
                     <Link onClick={() => { linkToEvent(event._id) }} >Link to event</Link>
                   </div>
                   <center>
@@ -244,11 +237,11 @@ export default function Dashboard() {
                         <Button style={{ width: "100%" }} color="primary" onClick={() => registrationRequestHandler(event)}>Registration Request</Button>
                       </div>
                     ) : (
-                        <div>
-                          <Button style={{ width: "100%" }} color="info" onClick={() => viewParticipantsHandler(event._id)}>View Participants
-                    </Button>
-                        </div>
-                      )}
+                      <div>
+                        <Button style={{ width: "100%" }} color="info" onClick={() => viewParticipantsHandler(event._id)}>View Participants
+                        </Button>
+                      </div>
+                    )}
                   </center>
                 </li>
               </li>
@@ -259,15 +252,15 @@ export default function Dashboard() {
               {messageHandler}
             </Alert>
           ) : (
-              ""
-            )}
+            ""
+          )}
           {success ? (
             <Alert className="event-validation" color="success">
               {messageHandler}
             </Alert>
           ) : (
-              ""
-            )}
+            ""
+          )}
         </div>
       </Container>
     </>

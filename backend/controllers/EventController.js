@@ -1,5 +1,5 @@
 const Event = require("../models/Events");
-const User = require("../models/userModel");
+const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 // const { delete } = require("../routes");

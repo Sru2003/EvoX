@@ -81,6 +81,15 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.grad{
+  
+  background: linear-gradient(
+    97.86deg,
+    #a509ff 0%,
+    #34acc7 53.65%,
+    #a134c7 100%
+  );
+}
 .gradient-03 {
   position: absolute;
   width: 404px;

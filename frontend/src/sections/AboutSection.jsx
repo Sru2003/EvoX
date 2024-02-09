@@ -23,17 +23,15 @@ const AboutSection = () => {
         <motion.p variants={fadeIn('up', 'tween', 0.2, 1)}
           className='mt-[8px] font-normal sm-text-[32px] 
             text-[20px] text-center text-secondary-white'>
-          <span className='font-bold text-white'>Lorem </span>
-          ipsum dolor sit amet consectetur adipisicing elit.
-          Pariatur veniam itaque officia officiis esse est saepe 
-          <span className='font-bold text-white'> placeat perferendis </span>
-          ,voluptatibus voluptas illum iusto nam nostrum, laudantium, quas vitae.
-          Dolorem ipsum esse molestias officia magni,debitis assumenda blanditiis cum!
-          <span className='font-bold text-white'> Harum </span>
-          quasi accusamus esse, praesentium dignissimos in quisquam repellat cum,
-          quos tempora nam voluptatibus quae molestias commodi
-          <span className='font-bold text-white'> doloremque </span>
-          id a consectetur adipisicing elit.
+          <span className='font-bold text-white'>EvoX </span>
+          , our website, simplifies virtual event management by providing a platform for organizing
+          <span className='font-bold text-white'>  webinars </span>
+          , customized registration
+          <span className='font-bold text-white'> forms </span>
+          , pre-designed email invitations and Instagram ad templates, as well as
+          <span className='font-bold text-white'> live transcriptions </span>
+          and <span className='font-bold text-white'> session summaries </span>
+          .Its user-friendly features offer complete control of services to user, making it the future of event management.
         </motion.p>
 
         <motion.img

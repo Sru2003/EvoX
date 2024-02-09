@@ -19,5 +19,5 @@ export const TypingText = ({title,textStyles}) => (
 );
 
 export const TitleText = () => (
-  <h2>Title Text</h2>
+  <h2 className='text-white'>Features</h2>
 );

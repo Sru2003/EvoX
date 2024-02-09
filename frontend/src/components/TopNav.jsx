@@ -65,7 +65,7 @@ function TopNav() {
             <div className='flex items-center text-[20px] hover:scale-105 hover:underline'>
          <li className='mr-4 py-3'>
             <NavItem>
-            <NavLink href="/" >Dashboard</NavLink>
+            <NavLink href="/dashboard" >Dashboard</NavLink>
           </NavItem>
           </li>
           </div><div className='flex items-center text-[20px] hover:scale-105 hover:underline'>

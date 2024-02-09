@@ -245,7 +245,7 @@ function Register() {
                     placeholder="Password" />
                 </div>
                 <FormGroup>
-                  <Button color="success" className="submit-btn" size="lg">Register</Button>
+                  <Button color="success" className="submit-btn " size="lg">Register</Button>
                 </FormGroup>
 
               </Form>

@@ -17,35 +17,10 @@ const io = new Server(server,
         cors: {
             origin: "*",
             methods: ["GET", "POST"]
-        }
+        },
+        transports: ['websocket']
     });
 
-// io.on('connection',(socket)=>{
-//     console.log('a user connected')
-
-//     roomHandler(socket);
-    
-//     socket.on('disconnect',()=>{
-//         console.log('user is disconnected');
-    
-//     })
-// })
-
-// io.on("connection", (socket) => {
-// 	socket.emit("me", socket.id);
-
-// 	socket.on("disconnect", () => {
-// 		socket.broadcast.emit("callEnded")
-// 	});
-
-// 	socket.on("callUser", ({ userToCall, signalData, from, name }) => {
-// 		io.to(userToCall).emit("callUser", { signal: signalData, from, name });
-// 	});
-
-// 	socket.on("answerCall", (data) => {
-// 		io.to(data.to).emit("callAccepted", data.signal)
-// 	});
-// });
 
 const users = {};
 const connectedUsers = [];

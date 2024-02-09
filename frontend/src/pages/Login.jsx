@@ -198,7 +198,7 @@ function  Login() {
                   />
                 </div>
                 <FormGroup>
-                  <Button color="success" className="submit-btn" size="lg">Submit</Button>
+                  <Button color="success" className="submit-btn " size="lg">Submit</Button>
                 </FormGroup>
 
               </Form>
