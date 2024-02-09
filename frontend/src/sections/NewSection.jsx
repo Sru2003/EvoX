@@ -22,13 +22,14 @@ const NewSection = () => {
       <motion.div
           variants={planetVariants('left')}
           className={`${styles.flexCenter} flex-1`}
-      >
+        >
+          <div className='object-contain grad rounded-full mt-20'>
           <img
-            src='/get-started.png'
-            alt='get-started'
-            className='w-[90%] h-[90%] object-contain'
+            src='/Circle3.png'
+            alt='circle 3'
+            className='px-2 py-2 h-[300px]'
           />
-          
+          </div>
         </motion.div>
         
         <motion.div

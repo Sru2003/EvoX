@@ -117,7 +117,7 @@ import SignIn from '../assets/LoginRegister/images/signin-image.jpg'
 
 import { MdLock, MdEmail } from "react-icons/md";
 
-function  Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -139,7 +139,7 @@ function  Login() {
 
         setIsLoggedIn(true);
         navigate('/');
-       
+
       } else {
         const { message } = response.data;
         setError(true);
@@ -207,8 +207,8 @@ function  Login() {
                   {errorMessage}
                 </Alert>
               ) : (
-                  ""
-                )}
+                ""
+              )}
             </div>
           </div>
         </div>
@@ -219,4 +219,3 @@ function  Login() {
 }
 
 export default Login;
-

@@ -26,7 +26,7 @@ const ExploreSection = () => {
          <div className='object-contain grad rounded-full mt-20'>
           <img
             src='/Circle1.png'
-            alt='get-started'
+            alt='circle 1'
             className='px-2 py-2 h-[300px]'
           />
           </div>

@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+//import Login from "./pages/Login/index";
+//import Register from "./pages/Register/index";
 import Room from "./pages/Room";
 import { RoomProvider } from "./context/RoomContext";
 import { ContextProvider } from "./context/Context";
@@ -23,6 +25,7 @@ function App() {
         
           <ContextProvider>
             <div>
+            
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Login />} />
