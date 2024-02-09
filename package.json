@@ -16,8 +16,8 @@
   "author": "Srushti Pednekar, Richa Prajapati",
   "license": "MIT",
   "dependencies": {
-    "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.5",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "cors": "^2.8.5",

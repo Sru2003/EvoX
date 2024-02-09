@@ -24,7 +24,7 @@ module.exports = {
           firstName: user.firstName,
           lastName: user.lastName,
         };
-        return jwt.sign({ user: userResponse }, "secret", (err, token) => {
+        return jwt.sign({ user: userResponse },  process.env.JWT_SECRET, (err, token) => {
           return res.json({
             user: token,
             user_id: userResponse._id,

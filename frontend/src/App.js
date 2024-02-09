@@ -2,9 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Dashboard from "./pages/Dashboard";
+import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+//import Login from "./pages/Login/index";
+//import Register from "./pages/Register/index";
 import Header from "./components/Header";
 import Room from "./pages/Room";
 import { RoomProvider } from "./context/RoomContext";
@@ -13,34 +15,35 @@ import ViewParticipants from "./pages/ViewParticipants";
 import ViewEvent from "./components/DetailedEvents/ViewEvent";
 import MyRegistrations from "./pages/MyRegistrations";
 import Events from "./pages/Events";
+import EventsPage from "./pages/EventsPage/index";
+import Dashboard from "./pages/Dashboard/index";
+import { ContextWrapper } from "./user-context";
 function App() {
   return (
-    <div className="bg-primary-black  h-screen overflow-hidden">
+    <div className="bg-primary-black h-full overflow-hidden">
+      <ContextWrapper>
       <Router>
-        <RoomProvider>
+        
           <ContextProvider>
             <div>
               <Header />
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/room" element={<Room />} />
-                <Route path="/events" element={<Events/>}/>
-                <Route
-                  path="/events/myregistrations"
-                  element={<MyRegistrations/>}
-                />
-                <Route
-                  path="/events/event/participants"
-                  element={<ViewParticipants/>}
-                />
-                <Route path="/events/eventdetails" element={<ViewEvent/>} />
-              </Routes>
+                <Route path="/events" element={<EventsPage/>}/>
+                {/* <Route path="/events/createevent" element={<EventsPage/>}/> */}
+                <Route path="/event/participants" element={<ViewParticipants />} />
+                <Route path="/eventdetails" element={<ViewEvent />} />
+                <Route path="/myregistrations" element={<MyRegistrations />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+               </Routes>
             </div>
           </ContextProvider>
-        </RoomProvider>
+        
       </Router>
+      </ContextWrapper>
       <ToastContainer />
     </div>
   );

@@ -8,6 +8,7 @@ const Sidebar = ({ children }) => {
 
   const handleCopyClick = (e) => {
     e.preventDefault();
+    console.log(me);
     navigator.clipboard.writeText(me);
   };
 
@@ -18,9 +19,9 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <form className="flex flex-col items-center  p-4  text-white">
+      <form className="flex flex-col items-center  p-4  ">
         <div className="mb-4">
-          <label className="ml-3 mr-3 mb-2 text-lg">Your Name</label>
+          <label className="ml-3 mr-3 mb-2 text-lg text-white">Your Name</label>
           <input
             type="text"
             value={name}
@@ -38,7 +39,7 @@ const Sidebar = ({ children }) => {
         </div>
 
         <div>
-          <label className="ml-3 mr-3 mb-2 text-lg">ID to call</label>
+          <label className="ml-3 mr-3 mb-2 text-lg text-white">ID to call</label>
           <input
             type="text"
             value={idToCall}

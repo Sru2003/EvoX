@@ -5,7 +5,7 @@ const Events = require("../models/Events");
 
 module.exports = {
   create(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {
@@ -59,7 +59,7 @@ module.exports = {
   },
 
   getMyRegistrations(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {
@@ -76,7 +76,7 @@ module.exports = {
   },
 
   getEventParticipants(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {

@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { SocketContext } from '../context/Context';
 
 const VideoPlayer = () => {
-  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(SocketContext);
+  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call,groupCall } = useContext(SocketContext);
 
   useEffect(() => {
     if (myVideo.current && stream) {
@@ -30,6 +30,16 @@ const VideoPlayer = () => {
         <div className="text-white text-center m-4">
           <h3>{call.name || 'Name'}</h3>
           <video playsInline ref={userVideo} autoPlay style={videoStyles} className="border-white border-2" />
+        </div>
+      )}
+      {groupCall && (
+        <div className="text-white text-center m-4">
+          <h3>Users in Call:</h3>
+          <ul>
+            {Object.keys(users).map((userId) => (
+              <li key={userId}>{userId === me ? 'You' : users[userId]}</li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

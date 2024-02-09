@@ -13,7 +13,7 @@ export const ContextWrapper = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(defaultValueHandler());
     const user = {
         isLoggedIn,
-        setIsLoggedIn
+        setIsLoggedIn,
     }
 
     return(
