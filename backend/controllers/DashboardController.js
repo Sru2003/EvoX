@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   getEventById(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(403);
       } else {
@@ -24,7 +24,7 @@ module.exports = {
   },
   getAllEvents(req, res) {
     // console.log("token:" + req.token);
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {
@@ -46,7 +46,7 @@ module.exports = {
     });
   },
   getEventsByUserId(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {

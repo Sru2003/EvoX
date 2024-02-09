@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Button } from "reactstrap";
 import api from '../../Services/api';
 import './ViewEvent.css'
-
+import { useNavigate } from 'react-router-dom';
 export default function ViewEvent({ history }) {
     const user = localStorage.getItem("user");
     const user_id = localStorage.getItem("user_id");
@@ -11,7 +11,7 @@ export default function ViewEvent({ history }) {
     const [eventSelected, setEventSelected] = useState({});
     const [isRequested, setIsRequested] = useState(false);
     const [registrationStatus, setRegistrationStatus] = useState('Request Registration');
-
+    const navigate = useNavigate();
     useEffect(() => {
         getEventDetails();
     }, []);
@@ -37,7 +37,7 @@ export default function ViewEvent({ history }) {
     const viewParticipantsHandler = async (event) => {
         try {
             localStorage.setItem("eventId", event);
-            history.push('/event/participants')
+            navigate('/event/participants')
         } catch (error) {
             console.log(error);
         }
@@ -48,7 +48,7 @@ export default function ViewEvent({ history }) {
             await api.delete(`/event/${eventId}`, {
                 headers: { user: user },
             });
-            history.push('/')
+            na('/')
         } catch (error) {
         }
     };

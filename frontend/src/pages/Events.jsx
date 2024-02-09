@@ -1,45 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar, Nav, NavItem, NavLink } from 'reactstrap';
+import { Outlet } from 'react-router-dom';
 import MyRegistrations from './MyRegistrations';
 import ViewParticipants from './ViewParticipants';
 import ViewEvent from '../components/DetailedEvents/ViewEvent';
-
-const Tab = ({ tabName, selectedTab, onClick }) => {
-  const isActive = selectedTab === tabName;
-
-  return (
-    <NavItem className="mr-4">
-      <NavLink
-        onClick={() => onClick(tabName)}
-        className={`text-lg font-bold text-white py-3 px-4 border-white ${isActive ? 'bg-gray-600 border-b-4' : 'border-b-2'}`}
-      >
-        {tabName}
-      </NavLink>
-    </NavItem>
-  );
-};
+import EventsPage from './EventsPage/index';
 
 const Events = () => {
-  const [selectedTab, setSelectedTab] = useState('My Registrations');
-
-  const handleTabClick = (tab) => {
-    setSelectedTab(tab);
-  };
-
   return (
-    <div className="flex flex-col items-center">
-      <Navbar color="dark" dark expand="md" className="my-4">
-        <Nav className="ml-auto flex text-white" navbar>
-          <Tab tabName="My Registrations" selectedTab={selectedTab} onClick={handleTabClick} />
-          <Tab tabName="View Participants" selectedTab={selectedTab} onClick={handleTabClick} />
-          <Tab tabName="Event Details" selectedTab={selectedTab} onClick={handleTabClick} />
+    <div className="flex bg-primary-black h-screen ">
+      <Navbar color="dark" dark expand="md" className="bg-primary flex-shrink-0 text-white">
+        <Nav navbar className="ml-auto">
+          {/* <NavItem>
+            <NavLink to="/createevent">Create Event</NavLink>
+          </NavItem> */}
+          <NavItem>
+            <NavLink to="/myregistrations">My Registrations</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/event/participants">View Participants</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/eventdetails">Event Details</NavLink>
+          </NavItem>
         </Nav>
       </Navbar>
-
       <div className="w-full max-w-screen-lg p-4">
-        {selectedTab === 'My Registrations' && <MyRegistrations />}
-        {selectedTab === 'View Participants' && <ViewParticipants />}
-        {selectedTab === 'Event Details' && <ViewEvent />}
+        <Outlet /> {/* Renders the selected route's component */}
       </div>
     </div>
   );

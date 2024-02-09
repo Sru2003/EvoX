@@ -6,14 +6,14 @@ const jwt = require("jsonwebtoken");
 
 module.exports = {
   createEvent(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.statusCode(401);
       } else {
         const { title, description, price, eventType, date } = req.body;
         // console.log("Event type is " + price);
-        const { location } = req.file;
-
+        const  location  = req.file.location;
+        
         const user = await User.findById(authData.user._id);
 
         if (!user) {
@@ -27,7 +27,7 @@ module.exports = {
             eventType,
             price: parseFloat(price),
             user: authData.user._id,
-            thumbnail: location,
+            thumbnail:location,
             date,
           });
 
@@ -40,7 +40,7 @@ module.exports = {
   },
 
   delete(req, res) {
-    jwt.verify(req.token, "secret", async (err) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err) => {
       if (err) {
         res.statusCode(401);
       } else {
@@ -57,7 +57,7 @@ module.exports = {
     });
   },
   getEventDetails(req, res) {
-    jwt.verify(req.token, "secret", async (err, authData) => {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
       } else {
