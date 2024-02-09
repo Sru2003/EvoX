@@ -58,19 +58,19 @@ export const startingFeatures = [
 export const socials = [
   {
     name: 'twitter',
-    url: '/twitter.svg',
+    url: '/twitter.png',
   },
   {
     name: 'linkedin',
-    url: '/linkedin.svg',
+    url: '/linkedin.png',
   },
   {
     name: 'instagram',
-    url: '/instagram.svg',
+    url: '/instagram.png',
   },
   {
     name: 'facebook',
-    url: '/facebook.svg',
+    url: '/facebook.png',
   },
 ];
 

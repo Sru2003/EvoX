@@ -26,7 +26,7 @@ const GetStarted = () => {
           <div className='object-contain grad rounded-full mt-20'>
           <img
             src='/Circle2.png'
-            alt='get-started'
+            alt='circle'
             className='px-2 py-2 h-[300px]'
           />
           </div>
