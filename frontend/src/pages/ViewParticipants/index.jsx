@@ -3,6 +3,8 @@ import moment from 'moment';
 import api from '../../Services/api';
 import "./participants.css";
 import { Container } from 'reactstrap';
+import TopNav from '../../components/TopNav'
+import '../../../src/index.css'
 
 export default function ViewParticipants() {
     const [eventParticipants, setEventParticipants] = useState([]);
@@ -23,9 +25,11 @@ export default function ViewParticipants() {
     }
 
     return (
-        <Container style={{marginTop:"10px", color:"black"}} >
-            <ul className="participants">
-                <h1>Total participants:{(eventParticipants.length)}</h1>
+        <div className='bg-primary-black h-[1000px] '>
+        <TopNav/>
+        <Container className='pt-4 p'>
+            <ul className="participants pl-4">
+                <h1 className='pl-4 font-bold text-[23px] fontype'>TOTAL PARTICIPANTS: {(eventParticipants.length)}</h1>
                 {eventParticipants.map(participant => (
                     <li key={participant._id}>
                         <div className="participant-name">{participant.user.firstName + " " + participant.user.lastName}</div>
@@ -34,6 +38,7 @@ export default function ViewParticipants() {
                     </li>
                 ))}
             </ul>
-        </Container>
+            </Container>
+        </div>
     );
 }

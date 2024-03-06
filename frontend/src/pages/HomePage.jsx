@@ -60,7 +60,7 @@ const HomePage = () => {
         <div className='relative'>
         < GetStarted />
         <div className='gradient-03 z-0' />
-        {/* < NewSection /> */}
+         < NewSection />
       </div>
       <Footer />
     </section>

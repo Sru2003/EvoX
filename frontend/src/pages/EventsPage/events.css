@@ -10,6 +10,15 @@ label#thumbnail {
   height: 120px;
 }
 
+/* .absolute-label{
+  position: absolute;
+  left: 200px;
+} */
+
+.fontype{
+   font-family: Poppins;
+}
+
 label#thumbnail input {
   display: none;
 }

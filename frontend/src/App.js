@@ -19,7 +19,7 @@ import Dashboard from "./pages/Dashboard/index";
 import { ContextWrapper } from "./user-context";
 function App() {
   return (
-    <div className="bg-primary-black h-full overflow-hidden">
+    <div className="overflow-hidden">
       <ContextWrapper>
       <Router>
         

@@ -83,12 +83,14 @@ ev-details {
   border-top: 1px solid #dedede;
   padding: 10px 0;
   font-weight: bold;
-  color: #9c9b9b;
-  text-transform: uppercase;
+  //color: #9c9b9b;
+  //text-transform: uppercase;
   font-size: 12px;
   display: block;
   margin-top: 17px;
   transition: 0.5s ease;
+  font-size:15px;
+  text-decoration:underline;
 }
 
 .li-card a:hover {

@@ -5,7 +5,8 @@ import { Container } from 'reactstrap';
 import { Button, ButtonGroup, Alert, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { Link } from 'react-router-dom';
 import socketio from 'socket.io-client';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import TopNav from '../../components/TopNav'
 export default function Dashboard() {
   const [events, setEvents] = useState([]);
   const user = localStorage.getItem("user");
@@ -161,8 +162,8 @@ export default function Dashboard() {
     // console.log('abc')
   }
   return (
-    <>
-      
+    <div className="bg-primary-black h-auto">
+      <TopNav />
       <ul className="notifications">
         {eventRequests.map(request => {
           return (
@@ -184,10 +185,11 @@ export default function Dashboard() {
         })}
       </ul>
       {eventRequestSuccess ?
-        <Alert className="event-validation" color="success">{eventRequestMessage}</Alert>
+        <Alert className="event-validation">{eventRequestMessage}</Alert>
         : ""}
-      <Container>
-        <div className="dashboard-page">
+      
+         
+        <div className="bg-primary-black">
           {/* <div className="filter-panel">
             <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg">
               <DropdownToggle color="success" caret>
@@ -202,14 +204,43 @@ export default function Dashboard() {
               </DropdownMenu>
             </Dropdown>
           </div> */}
-          <ul className="events-list">
+        <ul className="events-list  grid grid-cols-1 md:grid-cols-3 gap-4">
             {events.map((event) => (
-              <li key={event._id}>
+              <li className="mx-8 md:w-[350px]"
+                key={event._id}>
+                
+                <li className="li-card  mx-auto md:ml-4">
+                  <div className="li-picture" style={{ backgroundImage: `url(${event.thumbnail })`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                  <div>
+                    <h2 className="text-[18px]" style={{ height: "48px"}}>{event.title}</h2>
+                    <p><b>Date:</b> {moment(event.date).format("LL")}</p>
+                    <p><b>Price:</b> ₹{event.price} </p>
+                    <p><b>Status:</b> {event.approved ? 'Approved' : 'Pending Approval'}</p>
+                    
+                      <Link onClick={() => { linkToEvent(event._id) }} >
+                      Link to Event
+                      </Link>
+                      
+                  </div>
+                  <center>
+                    {event.user !== user_id ? (
+                      <div>
+                        <Button style={{ width: "100%" }} color="primary" onClick={() => registrationRequestHandler(event)}>Registration Request</Button>
+                      </div>
+                    ) : (
+                      <div>
+                          <Button style={{ width: "100%" }}
+                            className=" hover:bg-blue-200 font-bold py-2 px-4 rounded"
+                            onClick={() => viewParticipantsHandler(event._id)}>View Participants
+                          </Button>
+                      </div>
+                    )}
+                  </center>
+                </li>
                 <header>
                   {event.user === user_id ? (
-                    <div>
-                      <Button className="deleteButton"
-                        color="danger"
+                    <div className="flex justify-center">
+                      <Button className="delete-btn px-8 mb-8"
                         size="sm"
                         onClick={() => deleteEventHandler(event._id)}
                       >
@@ -220,30 +251,6 @@ export default function Dashboard() {
                     ""
                   )}
                 </header>
-                <li className="li-card">
-                  <div className="li-picture" style={{ backgroundImage: `url(${event.thumbnail_url})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-                  <div>
-                    <h2 style={{ height: "48px" }}>{event.title}</h2>
-                    <p><b>Date:</b> {moment(event.date).format("LL")}</p>
-                    <p><b>Price:</b> ₹{event.price} </p>
-                    <p>Status: {event.approved ? 'Approved' : 'Pending Approval'}</p>
-
-
-                    <Link onClick={() => { linkToEvent(event._id) }} >Link to event</Link>
-                  </div>
-                  <center>
-                    {event.user !== user_id ? (
-                      <div>
-                        <Button style={{ width: "100%" }} color="primary" onClick={() => registrationRequestHandler(event)}>Registration Request</Button>
-                      </div>
-                    ) : (
-                      <div>
-                        <Button style={{ width: "100%" }} color="info" onClick={() => viewParticipantsHandler(event._id)}>View Participants
-                        </Button>
-                      </div>
-                    )}
-                  </center>
-                </li>
               </li>
             ))}
           </ul>
@@ -261,8 +268,9 @@ export default function Dashboard() {
           ) : (
             ""
           )}
-        </div>
-      </Container>
-    </>
+          </div>
+        
+      
+    </div>
   );
 }

@@ -2,8 +2,13 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    font-family: Calibri;
-    color: white;
+    font-family: Poppins;
+    color: black;
+    padding-bottom:20px;
+}
+
+.fontype{
+     font-family: Poppins;
 }
 
 .participants li {
@@ -17,7 +22,7 @@
 }
 
 .participant-name {
-    font-family: cursive;
+    font-family: Poppins;
     font-size: 16px;
     font-weight: bold;
 }
