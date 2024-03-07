@@ -98,120 +98,120 @@ function EventsPage() {
   return (
     <div className="bg-primary-black h-auto">
     <TopNav/>
-    <Container className="p-8 rounded-lg">
-      <h2 className="text-3xl font-semibold text-center mb-6 fontype">CREATE YOUR EVENT</h2>
+   <Container className="p-8 rounded-lg">
+  <h2 className="text-3xl font-semibold text-center mb-6 fontype">CREATE YOUR EVENT</h2>
 
-      <Form onSubmit={handleEventSubmit}>
-        
-          <FormGroup className="mb-4 position-relative">
-          <Label for="exampleTitle">Event Title</Label>
-          <Input
-            bsSize="lg"
-            id="title"
-            type="text"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            placeholder="Enter event title"
-          />
-        </FormGroup>
+  <Form onSubmit={handleEventSubmit}>
+    <FormGroup className="mb-4 position-relative flex ">
+      <Label for="exampleTitle">Event Title</Label>
+      <Input
+        bsSize="lg"
+        id="title"
+        type="text"
+        value={title}
+        onChange={(event) => setTitle(event.target.value)}
+        placeholder="Enter event title"
+      />
+    </FormGroup>
 
-        <FormGroup className="mb-4">
-          <Label for="exampleText">Event Description</Label>
-          <Input
-            bsSize="lg"
-            id="description"
-            type="textarea"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            placeholder="Enter event description"
-          />
-        </FormGroup>
+    <FormGroup className="mb-4 flex">
+      <Label for="exampleText">Event Description</Label>
+      <Input
+        bsSize="lg"
+        id="description"
+        type="textarea"
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+        placeholder="Enter event description"
+      />
+    </FormGroup>
 
-        <FormGroup className="mb-4">
-          <Label for="exampleSelect">Event Type</Label>
-          <Input
-            type="select"
-            name="select"
-            id="exampleSelect"
-            onChange={(event) => setEventType(event.target.value)}
-          >
-            <option disabled selected>
-              Select event-type
-            </option>
-            <option value="webinar">Webinar</option>
-            <option value="seminar">Seminar</option>
-            <option value="workshop">Workshop</option>
-          </Input>
-        </FormGroup>
+    <FormGroup className="mb-4 flex">
+      <Label for="exampleSelect">Event Type</Label>
+      <Input
+        type="select"
+        name="select"
+        id="exampleSelect"
+        onChange={(event) => setEventType(event.target.value)}
+      >
+        <option disabled selected>
+          Select event-type
+        </option>
+        <option value="webinar">Webinar</option>
+        <option value="seminar">Seminar</option>
+        <option value="workshop">Workshop</option>
+      </Input>
+    </FormGroup>
 
-        <FormGroup className="mb-4">
-          <Label for="exampleText">Event Price</Label>
-          <InputGroup>
-            <InputGroupText addonType="prepend">₹</InputGroupText>
-            <Input
-              id="price"
-              type="number"
-              min="0"
-              step="any"
-              value={price}
-              onChange={(event) => setPrice(event.target.value)}
-              placeholder="Enter price of event"
-            />
-          </InputGroup>
-        </FormGroup>
+    <FormGroup className="mb-4 flex">
+      <Label for="exampleText">Event Price</Label>
+      <InputGroup className="flex">
+        <InputGroupText addonType="prepend">₹</InputGroupText>
+        <Input
+          id="price"
+          type="number"
+          min="0"
+          step="any"
+          value={price}
+          onChange={(event) => setPrice(event.target.value)}
+          placeholder="Enter price"
+                />
+      </InputGroup>
+    </FormGroup>
 
-        <FormGroup className="mb-4">
-          <Label for="datefield">Select Date</Label>
-          <Input
-            id="datefield"
-            type="date"
-            value={date}
-            onChange={(event) => setDate(event.target.value)}
-            placeholder="Enter date of event"
-          />
-        </FormGroup>
+    <FormGroup className="mb-4 flex">
+      <Label for="datefield">Select Date</Label>
+      <Input
+        id="datefield"
+        type="date"
+        value={date}
+        onChange={(event) => setDate(event.target.value)}
+        placeholder="Enter date of event"
+      />
+    </FormGroup>
 
-        <FormGroup className="mb-4">
-          <Label for="exampleFile">Thumbnail</Label>
-          <Input
-            id="thumbnail"
-            type="file"
-            onChange={(event) => setThumbnail(event.target.files[0])}
-          />
-          {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setThumbnail(base64)} /> */}
-        </FormGroup>
+    <FormGroup className="mb-4 flex">
+      <Label for="exampleFile">Thumbnail</Label>
+      <Input
+        id="thumbnail"
+        type="file"
+        onChange={(event) => setThumbnail(event.target.files[0])}
+      />
+      {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setThumbnail(base64)} /> */}
+    </FormGroup>
 
-        <FormGroup className="flex justify-between">
-          <Button className="submit-btn special-btn" color="success" size="lg">
-            Create Event
-          </Button>
-          <Button
-            className="secondary-btn special-btn"
-            onClick={() => navigate("/")}
-            color="danger"
-            size="lg"
-          >
-            Cancel
-          </Button>
-        </FormGroup>
+    <FormGroup className="flex justify-between">
+      <Button className="submit-btn special-btn" color="success" size="lg">
+        Create Event
+      </Button>
+      <Button
+        className="secondary-btn special-btn"
+        onClick={() => navigate("/")}
+        color="danger"
+        size="lg"
+      >
+        Cancel
+      </Button>
+    </FormGroup>
 
-        {error ? (
-          <Alert color="danger" className="event-validation mt-4">
-            Missing required information
-          </Alert>
-        ) : (
-          ""
-        )}
+    {error ? (
+      <Alert color="danger" className="event-validation mt-4">
+        Missing required information
+      </Alert>
+    ) : (
+      ""
+    )}
 
-        {success ? (
-          <Alert color="success" className="event-validation mt-4">
-            Event was created successfully
-          </Alert>
-        ) : (
-          ""
-        )}
-      </Form>
-      </Container>
+    {success ? (
+      <Alert color="success" className="event-validation mt-4">
+        Event was created successfully
+      </Alert>
+    ) : (
+      ""
+    )}
+  </Form>
+</Container>
+
     </div>
   );
 }
