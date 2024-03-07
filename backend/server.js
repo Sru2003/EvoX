@@ -71,10 +71,6 @@ io.on('connection', (socket) => {
     io.to(data.to).emit('callAccepted', data.signal);
   });
 
-  socket.on('joinGroupCall', () => {
-    users[socket.id] = socket.id;
-    io.emit('updateUsers', users);
-  });
 });
 
 app.use((req, res, next) => {

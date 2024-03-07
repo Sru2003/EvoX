@@ -11,9 +11,7 @@ const Events = () => {
     <div className="flex bg-primary-black h-screen ">
       <Navbar color="dark" dark expand="md" className="bg-primary flex-shrink-0 text-white">
         <Nav navbar className="ml-auto">
-          {/* <NavItem>
-            <NavLink to="/createevent">Create Event</NavLink>
-          </NavItem> */}
+          
           <NavItem>
             <NavLink to="/myregistrations">My Registrations</NavLink>
           </NavItem>

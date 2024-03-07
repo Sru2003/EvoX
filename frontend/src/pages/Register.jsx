@@ -159,7 +159,8 @@ function Register() {
       password !== "" &&
       firstName !== "" &&
       lastName !== ""
-    ) {
+    ) 
+    {
       const response = await api.post("/user/register", {
         email,
         password,

@@ -17,6 +17,7 @@ import Events from "./pages/Events";
 import EventsPage from "./pages/EventsPage/index";
 import Dashboard from "./pages/Dashboard/index";
 import { ContextWrapper } from "./user-context";
+import JoinMeet from "./pages/JoinMeet";
 function App() {
   return (
     <div className="bg-primary-black h-full overflow-hidden">
@@ -30,13 +31,14 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/room" element={<Room />} />
+                <Route path="/room" element={<JoinMeet />} />
                 <Route path="/events" element={<EventsPage/>}/>
                 {/* <Route path="/events/createevent" element={<EventsPage/>}/> */}
                 <Route path="/event/participants" element={<ViewParticipants />} />
                 <Route path="/eventdetails" element={<ViewEvent />} />
                 <Route path="/myregistrations" element={<MyRegistrations />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/room/:roomID" element={<Room />} />
                </Routes>
             </div>
           </ContextProvider>

@@ -15,7 +15,6 @@ const ContextProvider = ({ children }) => {
   const [call, setCall] = useState({});
   const [me, setMe] = useState('');
   const [users, setUsers] = useState({});
-const [groupCall, setGroupCall] = useState(false);
 
 
   const myVideo = useRef({ current: null });
@@ -58,25 +57,7 @@ const [groupCall, setGroupCall] = useState(false);
     connectionRef.current = peer;
   };
 
-  // const callUser = (id) => {
-  //   const peer = new Peer({ initiator: true, trickle: false, stream });
 
-  //   peer.on('signal', (data) => {
-  //     socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
-  //   });
-
-  //   peer.on('stream', (currentStream) => {
-  //     userVideo.current.srcObject = currentStream;
-  //   });
-
-  //   socket.on('callAccepted', (signal) => {
-  //     setCallAccepted(true);
-
-  //     peer.signal(signal);
-  //   });
-
-  //   connectionRef.current = peer;
-  // };
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
   
@@ -97,10 +78,6 @@ const [groupCall, setGroupCall] = useState(false);
     connectionRef.current = peer;
   };
 
-  const joinGroupCall = () => {
-    setGroupCall(true);
-    socket.emit('joinGroupCall');
-  };
   
   const leaveCall = () => {
     setCallEnded(true);
@@ -125,8 +102,7 @@ const [groupCall, setGroupCall] = useState(false);
       callUser,
       leaveCall,
       answerCall,
-      groupCall,
-      joinGroupCall,
+      
     }}
     >
       {children}
