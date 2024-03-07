@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import api from "../../Services/api";
+import TopNav from "../../components/TopNav"
 import {
   Alert,
   Button,
   Container,
   Col,
+  Row,
   Form,
   FormGroup,
   Input,
@@ -13,7 +15,6 @@ import {
   Label,
 } from "reactstrap";
 import FileBase from 'react-file-base64';
-
 import { useNavigate } from "react-router-dom";
 import "./events.css";
 
@@ -95,11 +96,14 @@ function EventsPage() {
   };
 
   return (
-    <Container className="bg-white p-8 rounded-lg mt-10">
-      <h2 className="text-3xl font-semibold text-center mb-6">Create your event</h2>
+    <div className="bg-primary-black h-auto">
+    <TopNav/>
+    <Container className="p-8 rounded-lg">
+      <h2 className="text-3xl font-semibold text-center mb-6 fontype">CREATE YOUR EVENT</h2>
 
       <Form onSubmit={handleEventSubmit}>
-        <FormGroup className="mb-4">
+        
+          <FormGroup className="mb-4 position-relative">
           <Label for="exampleTitle">Event Title</Label>
           <Input
             bsSize="lg"
@@ -207,7 +211,8 @@ function EventsPage() {
           ""
         )}
       </Form>
-    </Container>
+      </Container>
+    </div>
   );
 }
 

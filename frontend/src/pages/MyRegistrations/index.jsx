@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Button, ButtonGroup, Container } from "reactstrap";
 import api from '../../Services/api';
 import "./myRegistration.css";
+import TopNav from '../../components/TopNav'
 
 export default function MyRegistrations() {
     const [myEvents, setMyEvents] = useState([]);
@@ -36,8 +37,11 @@ export default function MyRegistrations() {
     }
 
     return (
-        <Container>
-            <ul className="events">
+        <div className="bg-primary-black h-auto">
+        <TopNav/>
+    
+            <div>
+            <ul className="events md:mx-[65px]">
                 {myEvents.map(event => (
                     <li key={event._id}>
                         <div className="event-title">{event.eventTitle}</div>
@@ -52,16 +56,22 @@ export default function MyRegistrations() {
                             </span>
                         </div>
                         <ButtonGroup>
-                            <Button disabled={event.approved === true || event.approved === false ? true : false} color="secondary" onClick={() => { eventStatusHandler(event._id, true) }}>
+                            <Button disabled={event.approved === true || event.approved === false ? true : false}
+                             className='accept-btn mr-4'
+                             onClick={() => { eventStatusHandler(event._id, true) }}>
                                 Accept
                         </Button>
-                            <Button disabled={event.approved === true || event.approved === false ? true : false} color="danger" onClick={() => { eventStatusHandler(event._id, false) }}>
+                            <Button disabled={event.approved === true || event.approved === false ? true : false}
+                             className='reject-btn'
+                             onClick={() => { eventStatusHandler(event._id, false) }}>
                                 Reject
                         </Button>
                         </ButtonGroup>
                     </li>
                 ))}
-            </ul>
-        </Container>
+                </ul>
+            </div>
+            
+        </div>
     );
 }

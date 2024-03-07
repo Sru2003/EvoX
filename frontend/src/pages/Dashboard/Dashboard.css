@@ -57,30 +57,18 @@ ul.notifications li {
   }
 }
 
-@media (max-width: 768px) {
-  ul.events-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-.deleteButton {
-  position: absolute;
-  z-index: 99;
-  display: inline;
-}
 .li-card {
   position: relative;
   z-index: 9;
   background-color: white;
-  width: 100%;
+  width: 300px; /* Fixed width to 300px */
   list-style: none;
   border: 1px solid #dedede;
-  -webkit-box-shadow: 11px 13px 17px -11px rgba(0, 0, 0, 0.43);
-  -moz-box-shadow: 11px 13px 17px -11px rgba(0, 0, 0, 0.43);
-  box-shadow: 11px 13px 17px -11px rgba(0, 0, 0, 0.09);
+  box-shadow: 11px 13px 17px -11px rgba(0, 0, 0, 0.09); /* Adjusted box-shadow for changed width */
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px; /* Reduced margin to 10px */
 }
+
 
 .li-picture {
   position: relative;
@@ -92,13 +80,12 @@ ul.notifications li {
 }
 
 .li-card p {
-  color: #464646;
+  //color: #464646;
   margin: 0;
   font-size: 12px;
 }
 
 .li-card b {
-  width: 57px;
   display: inline-block;
 }
 
@@ -116,7 +103,7 @@ ul.notifications li {
   display: block;
   margin-top: 17px;
   transition: 0.5s ease;
-}
+} 
 
 .li-card a:hover {
   cursor: pointer;

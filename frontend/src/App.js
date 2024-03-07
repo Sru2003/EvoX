@@ -20,7 +20,7 @@ import { ContextWrapper } from "./user-context";
 import JoinMeet from "./pages/JoinMeet";
 function App() {
   return (
-    <div className="bg-primary-black h-full overflow-hidden">
+    <div className="overflow-hidden">
       <ContextWrapper>
       <Router>
         

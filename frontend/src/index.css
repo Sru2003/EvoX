@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Eudoxus Sans", sans-serif;
+  font-family: "Poppins";
   scroll-behavior: smooth;
 }
 
@@ -71,8 +71,36 @@
            active:bg-blue-700 px-4 py-2 rounded-lg
            shadow-md transition duration-300 ease-in-out transform 
            hover:scale-105 text-[13px]
-           text-white font-serif;
+           text-white 
   }
+
+  .accept-btn{
+    @apply
+    bg-gradient-to-r from-green-500
+     to-green-700 hover:from-green-600 hover:to-green-800 
+     focus:outline-none focus:ring focus:ring-green-300
+      active:bg-green-900 px-4 rounded-sm 
+      shadow-md transition duration-300 ease-in-out transform 
+      hover:scale-105 text-[13px] 
+      text-white
+  }
+
+  .reject-btn{
+    @apply bg-gradient-to-r from-red-500
+     to-red-700 hover:from-red-600 hover:to-red-800
+     focus:outline-none focus:ring focus:ring-red-300
+     active:bg-red-900 px-4  rounded-sm 
+     shadow-md transition duration-300 ease-in-out transform
+     hover:scale-105 text-[13px]
+    text-white
+ }
+
+ .delete-btn{
+    @apply bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900
+    focus:outline-none focus:ring focus:ring-red-500 active:bg-red-900
+    px-[20px] py-2 rounded-[10px] shadow-md transition duration-300 ease-in-out transform
+    hover:scale-95 text-[13px] text-white;
+ }
 }
 
 .hero-gradient {
@@ -105,6 +133,15 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.grad{
+  
+  background: linear-gradient(
+    97.86deg,
+    #a509ff 0%,
+    #34acc7 53.65%,
+    #a134c7 100%
+  );
+}
 .gradient-03 {
   position: absolute;
   width: 404px;

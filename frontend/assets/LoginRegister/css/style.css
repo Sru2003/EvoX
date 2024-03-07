@@ -291,7 +291,6 @@ h2 {
   font-weight: bold;
   color: #222;
   font-family: Poppins;
-  font-size: 36px;
 }
 
 .main {
@@ -316,7 +315,7 @@ body {
 .container {
   width: 900px;
   background: #fff;
-  margin: 0 auto;
+  //margin: 0 auto;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -698,6 +697,7 @@ label.valid:after {
 @media screen and (min-width: 1024px) {
   .container {
     max-width: 1200px;
+    
   }
 }
 @media screen and (max-width: 768px) {

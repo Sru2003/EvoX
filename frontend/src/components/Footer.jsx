@@ -26,7 +26,7 @@ const Footer = () => {
             src="/headset.png"
             alt="headset"
             className="w-[24px] h-[24px] object-contain"
-          />
+          /> 
           <span className="font-normal text-[16px] text-white">
                 Enter Evox-Where Ideas Evolve
           </span>
@@ -45,14 +45,14 @@ const Footer = () => {
           </p>
 
           <div className="flex gap-4">
-            {socials.map((social) => (
+             {socials.map((social) => (
               <img
                 key={social.name}
                 src={social.url}
                 alt={social.name}
                 className="w-[24px] h-[24px] object-contain cursor-pointer"
-              />
-            ))}
+              /> 
+             ))} 
           </div>
         </div>
       </div>

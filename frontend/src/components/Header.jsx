@@ -51,7 +51,7 @@ function TopNav() {
       whileInView="show"
       className={`pl-6 py-8 relative`}
     >
-      <div className='absolute w-[20px] inset-0 gradient-01' />
+      <div className='absolute w-[50%] inset-0 gradient-01' />
       <div className={`mx-auto flex justify-between gap-8 ${styles.innerWidth}`}>
         <ul className='inline-flex justify-center items-center text-white flex-row flex-grow'>
           <Link to='/'>
@@ -65,7 +65,7 @@ function TopNav() {
             <div className='flex items-center text-[20px] hover:scale-105 hover:underline'>
          <li className='mr-4 py-3'>
             <NavItem>
-            <NavLink href="/dashboard" >Dashboard</NavLink>
+            <NavLink href="/" >Dashboard</NavLink>
           </NavItem>
           </li>
           </div><div className='flex items-center text-[20px] hover:scale-105 hover:underline'>
