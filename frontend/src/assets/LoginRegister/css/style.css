@@ -456,7 +456,7 @@ figure {
 }
 
 input {
-  width: 100%;
+  width:75%;
   display: block;
   border: none;
   border-bottom: 1px solid #999;
@@ -552,7 +552,7 @@ input[type="checkbox"]:not(old):checked + label > span:before {
 }
 
 label {
-  position: absolute;
+  /* position: absolute; */
   left: 0;
   /* top: 50%; */
   /* transform: translateY(-50%); */
