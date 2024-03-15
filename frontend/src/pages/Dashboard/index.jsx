@@ -95,61 +95,14 @@ export default function Dashboard() {
       }, 2000);
     }
   };
-  // const registrationRequestHandler = async (event) => {
-  //   try {
-      
-  //     const {data:{key}}=await axios.get('http://localhost:3000/api/getkey')
-  //     console.log(key)
-  //     const {data:{registration,order}}=await api.post(`/registration/${event.id}`, {}, { headers: { user } });
-  //     console.log(registration)
-  //     console.log(order)
-  //     const options = {
-  //       key, // Enter the Key ID generated from the Dashboard
-  //       amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-  //       currency: "INR",
-  //       name: "EvoX",
-  //       description: "Test Transaction",
-  //       // image: "https://example.com/your_logo",
-  //       order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-  //       callback_url: "https://localhost:3000/api/paymentVerification",
-  //       prefill: {
-  //           name: user.name,
-  //           email: user.email,
-  //           contact: "9000090000"
-  //       },
-  //       notes: {
-  //           "address": "Razorpay Corporate Office"
-  //       },
-  //       theme: {
-  //           "color": "#3399cc"
-  //       }
-  //   };
-  //   const razor = new window.Razorpay(options);
-  //   razor.open();
-  //     setSuccess(true);
-  //     setMessageHandler(`The registration request for the event ${event.title} made successfully!`);
-  //     setTimeout(() => {
-  //       setSuccess(false);
-  //       filterHandler(null);
-  //       setMessageHandler('');
-  //     }, 2500);
-  //   } catch (error) {
-  //     setError(true);
-  //     setMessageHandler('Error while registering for event!');
-  //     setTimeout(() => {
-  //       setError(false);
-  //       setMessageHandler('');
-  //     }, 2000);
-  //   }
-  // }
-
   const registrationRequestHandler = async (event) => {
     try {
-      const { data: { key } } = await axios.get('http://localhost:3000/api/getkey');
-      console.log(key);
-      const { data: { registration, order } } = await api.post(`/registration/${event.id}`, {}, { headers: { user } });
-      console.log(registration);
-      console.log(order);
+      
+      const {data:{key}}=await axios.get('http://localhost:3000/api/getkey')
+      console.log(key)
+      const {data:{registration,order}}=await api.post(`/registration/${event.id}`, {}, { headers: { user } });
+      console.log(registration)
+      console.log(order)
       const options = {
         key, // Enter the Key ID generated from the Dashboard
         amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -170,9 +123,9 @@ export default function Dashboard() {
         theme: {
             "color": "#3399cc"
         }
-      };
-      const razor = new window.Razorpay(options);
-      razor.open();
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
       setSuccess(true);
       setMessageHandler(`The registration request for the event ${event.title} made successfully!`);
       setTimeout(() => {
@@ -183,13 +136,14 @@ export default function Dashboard() {
     } catch (error) {
       setError(true);
       setMessageHandler('Error while registering for event!');
-      console.error(error); // Log the error for debugging purposes
       setTimeout(() => {
         setError(false);
         setMessageHandler('');
       }, 2000);
     }
   }
+
+  
   
   const getEvents = async (filter) => {
     try {

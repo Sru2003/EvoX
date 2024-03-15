@@ -53,38 +53,63 @@ console.log(populatedRegistration);
           amount: Number(registration.eventPrice)*100,  // amount in the smallest currency unit
           currency: "INR",
         };
-        const order=await instance.orders.create(options); 
-       
-        const templateParams = {
-          // to_name: 'Client Name',
-          to_email:registration.user.email,
-          event_title: registration.event.title,
-          event_date: registration.event.date,
-          event_id: registration.event.eventId,
-          event_price: registration.event.price,
-          // email_id: 
-        };
+        // const order=await instance.orders.create(options); 
+        // // console.log('Hi from me!!!')
+
+        // const templateParams = {
+        //   // to_name: 'Client Name',
+        //   to_email:registration.user.email,
+        //   event_title: registration.event.title,
+        //   event_date: registration.event.date,
+        //   event_id: registration.event.eventId,
+        //   event_price: registration.event.price,
+        //   // email_id: 
+        // };
       
-        emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams)
-          .then((response) => {
-            console.log('Email sent:', response);
-            res.send({ success: true });
-          })
-          .catch((error) => {
-            console.error('Error sending email:', error);
-            res.status(500).send({ success: false, error: 'Failed to send email' });
-          });
-         console.log(order);
+        // emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams)
+        //   .then((response) => {
+        //     console.log('Email sent:', response);
+        //     res.send({ success: true });
+        //   })
+        //   .catch((error) => {
+        //     console.error('Error sending email:', error);
+        //     res.status(500).send({ success: false, error: 'Failed to send email' });
+        //   });
+        //  console.log(order);
+          
 
-
-        // const ownerSocket = req.connectedUsers[registration.event.user];
-
-        // if (ownerSocket) {
-        //   req.io.to(ownerSocket).emit('registration_request', registration);
-        // }
-        //  return res.json(registration,order);
-        return res.status(200).json({ registration, order });
-
+        //  return res.status(200).json({ registration, order });
+        try {
+          const order = await instance.orders.create(options); 
+          console.log('Order created:', order);
+        
+          const templateParams = {
+            to_email:registration.user.email,
+              event_title: registration.event.title,
+              event_date: registration.event.date,
+              event_id: registration.event.eventId,
+              event_price: registration.event.price,
+                        };
+        
+          // Send email using emailjs
+          emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams,'Um5AebFL2fpSvANlG')
+            .then((response) => {
+              console.log('Email sent:', response);
+              res.send({ success: true });
+            })
+            .catch((error) => {
+              console.error('Error sending email:', error);
+              // res.status(500).send({ success: false, error: 'Failed to send email' });
+            });
+        
+          // Return response
+          return res.status(200).json({ registration, order });
+        } catch (error) {
+          console.error('Error creating order:', error);
+          // Handle error appropriately
+          return res.status(500).json({ success: false, error: 'Failed to create order' });
+        }
+        
       }
     })
   },
