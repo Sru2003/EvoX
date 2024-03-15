@@ -13,7 +13,6 @@ module.exports = {
         const { eventId } = req.params;
         var date = new Date();
         date = date.toDateString();
-
         const registration = await Registration.create({
           date: date,
           user: user_id,
@@ -37,6 +36,31 @@ console.log(populatedRegistration);
         registration.eventDate = registration.event.date;
         registration.userEmail = registration.user.email;
         registration.save();
+        
+        
+// app.post('/sendEmail', (req, res) => {
+  // const { toEmail, eventInfo } = req.body;
+
+  const templateParams = {
+    // to_name: 'Client Name',
+    to_email:registration.user.email,
+    event_title: registration.event.title,
+    event_date: registration.event.date,
+    event_id: registration.event.eventId,
+    event_price: registration.event.price,
+    // email_id: 
+  };
+
+  emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams)
+    .then((response) => {
+      console.log('Email sent:', response);
+      res.send({ success: true });
+    })
+    .catch((error) => {
+      console.error('Error sending email:', error);
+      res.status(500).send({ success: false, error: 'Failed to send email' });
+    });
+// });
 
         const ownerSocket = req.connectedUsers[registration.event.user];
 

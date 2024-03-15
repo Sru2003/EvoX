@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import '../index.css';
 import { textContainer, textVariant2 } from '../utils/motion.js';
-
+import { startingFeatures } from '../index.js';
 
 export const TypingText = ({title,textStyles}) => (
     <motion.p
@@ -18,6 +18,10 @@ export const TypingText = ({title,textStyles}) => (
     </motion.p>
 );
 
-export const TitleText = () => (
-  <h2 className='text-white'>Features</h2>
+export const TitleText = ({feature}) => (
+    <>
+        <h2 className='text-white'>{feature}</h2>
+    </>
 );
+
+        

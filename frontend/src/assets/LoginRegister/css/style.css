@@ -296,8 +296,8 @@ h2 {
 
 .main {
   background: #f8f8f8;
-  padding: 4% 0 0 0;
-  /* akshit */
+  padding: 6% 0 6% 0;
+
 }
 
 .clear {
@@ -314,7 +314,7 @@ body {
 }
 
 .container {
-  width: 900px;
+  width: 700px;
   background: #fff;
   margin: 0 auto;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -372,7 +372,7 @@ body {
 }
 
 .signup-content {
-  padding: 100px 0;
+  padding: 30px 0;
   /* akshit */
 }
 
@@ -456,11 +456,11 @@ figure {
 }
 
 input {
-  width:75%;
+  width:100%;
   display: block;
   border: none;
-  border-bottom: 1px solid #999;
-  padding: 6px 30px;
+  border-bottom: 1px solid ;
+  padding: 6px ;
   font-family: Poppins;
   box-sizing: border-box;
 }
@@ -613,7 +613,7 @@ label.valid:after {
 
 .signin-content {
   padding-top: 67px;
-  padding-bottom: 87px;
+  padding-bottom: 67px;
 }
 
 .social-login {

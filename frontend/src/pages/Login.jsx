@@ -114,7 +114,6 @@ import { Button, Form, FormGroup, Alert } from "reactstrap";
 import { UserContext } from '../user-context';
 import { useNavigate } from 'react-router-dom';
 import SignIn from '../assets/LoginRegister/images/signin-image.jpg'
-
 import { MdLock, MdEmail } from "react-icons/md";
 
 function Login() {
@@ -157,14 +156,15 @@ function Login() {
 
   return (
 
-    <div className="main">
+    <div className="main h-auto" style={{ backgroundImage: `url(/bkgnd.png)`, backgroundRepeat: "no-repeat", backgroundPosition: 'center',backgroundSize:'cover' }}>
       <section className="sign-in">
+        <div className="mb-4">
         <div className="container">
           <div className="signin-content">
             <div className="signin-image">
               <figure><img src={SignIn} alt="sing up image" /></figure>
-              <a className="signup-image-link"
-                style={{ cursor: "pointer" }}
+              <a className="signup-image-link underline"
+                style={{ cursor: "pointer",color:'blue' }}
                 onClick={() => {
                   navigate("/register");
                 }}>Create an account</a>
@@ -173,9 +173,10 @@ function Login() {
             <div className="signin-form">
               <h2 className="form-title">Log In</h2>
               <Form onSubmit={handleSubmit}>
-                <div className="form-group" style={{ justifyContent: "center" }}>
+                <div className="form-group flex" style={{ justifyContent: "center" }}>
                   <label for="your_name"><MdEmail fontSize="large" /></label>
-                  <input
+                    <input
+                      className="ml-4 bg-white"
                     onChange={(event) => {
                       setEmail(event.target.value);
                     }}
@@ -185,9 +186,10 @@ function Login() {
                     placeholder="Enter your email here"
                   />
                 </div>
-                <div className="form-group" style={{ justifyContent: "center" }}>
+                <div className="form-group flex" style={{ justifyContent: "center" }}>
                   <label for="your_pass"><MdLock fontSize="large" /></label>
-                  <input
+                    <input
+                      className="ml-4"
                     onChange={(event) => {
                       setPassword(event.target.value);
                     }}
@@ -198,7 +200,7 @@ function Login() {
                   />
                 </div>
                 <FormGroup>
-                  <Button color="success" className="submit-btn " size="lg">Submit</Button>
+                  <Button color="success" className="special-btn " size="lg">Submit</Button>
                 </FormGroup>
 
               </Form>
@@ -211,7 +213,8 @@ function Login() {
               )}
             </div>
           </div>
-        </div>
+          </div>
+          </div>
       </section>
 
     </div>

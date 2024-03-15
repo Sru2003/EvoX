@@ -36,15 +36,18 @@ const ExploreSection = () => {
           variants={fadeIn('left', 'tween', 0.2, 1)}
           className='flex-[0.75] flex justify-center flex-col'
         >
-          <TypingText title='| How EvoX Works' />
-          <TitleText title={<>Get started with just a clicks</>} />
+          <TypingText title='| Features' />
+          <TitleText title={<>Get started with just a clicks</>} feature={'Create Your Event'}/>
           <div className='mt-[31px] flex flex-col max-w-[370px]
           gap=[24px]'>
-            
+{/*             
             <Startsteps
               
-            />
-      
+            /> */}
+            <div className={`${styles.flexCenter} flex-row  text-secondary-white`}>
+              <p>Organize a gathering of your choosing and post it on our website to attract users. There is a page on our website where you can make your own custom events, such as webinars, workshops, or meetings.
+            </p>
+            </div>
           </div>
         </motion.div>
       </motion.div>

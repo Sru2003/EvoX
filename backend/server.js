@@ -1,4 +1,6 @@
 const express = require('express')
+const bodyParser = require('body-parser');
+const emailjs = require('emailjs-com');
 const colors = require('colors')
 const dotenv = require('dotenv').config()
 const connectDB = require('./config/db')
@@ -11,6 +13,7 @@ const router = require('./routes/userRoutes')
 connectDB()
 
 const app = express()
+
 const server = http.createServer(app)
 const io = new Server(server,
     {
@@ -51,10 +54,13 @@ io.on('connection', (socket) => {
     io.emit('updateUsers', users);
   });
 });
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   req.io = io;
   req.connectedUsers = connectedUsers;
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   return next();
 })
 app.use(cors());

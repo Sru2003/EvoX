@@ -36,13 +36,15 @@ const GetStarted = () => {
           variants={fadeIn('left', 'tween', 0.2, 1)}
           className='flex-[0.75] flex justify-center flex-col'
         >
-          <TypingText title='| How EvoX Works' />
-          <TitleText title={<>Get started with just a clicks</>} />
+          <TypingText title='| Features' />
+          <TitleText title={<>Get started with just a clicks</>} feature={'Register For An Event'}/>
           <div className='mt-[31px] flex flex-col max-w-[370px]
           gap=[24px]'>
-            <Startsteps
-              
-              />
+            <div className={`${styles.flexCenter} flex-row  text-secondary-white`}>
+              <p>Offers Seamless Registration and Payment: Provides a user-friendly registration process and secure online payment gateway.
+
+              </p>
+            </div>
           </div>
         </motion.div>
       </motion.div>
