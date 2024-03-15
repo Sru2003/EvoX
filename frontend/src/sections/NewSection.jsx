@@ -36,17 +36,20 @@ const NewSection = () => {
           variants={fadeIn('left', 'tween', 0.2, 1)}
           className='flex-[0.75] flex justify-center flex-col'
         >
-          <TypingText title='| How EvoX Works' />
-          <TitleText title={<>Get started with just a clicks</>} />
+          <TypingText title='| Features' />
+          <TitleText title={<>Get started with just a clicks</>} feature={'Participate In Events'}/>
           <div className='mt-[31px] flex flex-col max-w-[370px]
           gap=[24px]'>
-            {startingFeatures.map((feature, index)=>(
+            {/* {startingFeatures.map((feature, index)=>(
             <Startsteps
               key={feature}
               number={index + 1}
               text={feature}
             />
-            ))}
+            ))} */}
+            <p>
+              Facilitates Participation: Enables users to create and participate in events organized by others, fostering a knowledge-sharing community.
+            </p>
           </div>
         </motion.div>
       </motion.div>

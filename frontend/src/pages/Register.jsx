@@ -196,12 +196,12 @@ function Register() {
   };
 
   return (
-    <div className="main">
+    <div className="main" style={{ backgroundImage: `url(/bkgnd.png)`, backgroundRepeat: "no-repeat", backgroundPosition: 'center', backgroundSize: 'cover' }}>
       <section className="signup">
         <div className="container">
           <div className="signup-content">
             <div className="signup-form">
-              <h2 className="form-title">Sign up</h2>
+              <h2 className="form-title">Sign Up</h2>
               <Form onSubmit={handleSubmit} className="register-form" id="register-form">
                 <div className="form-group">
                   <label for="name">
@@ -246,7 +246,7 @@ function Register() {
                     placeholder="Password" />
                 </div>
                 <FormGroup>
-                  <Button color="success" className="submit-btn " size="lg">Register</Button>
+                  <Button color="success" className="special-btn " size="lg">Sign Up</Button>
                 </FormGroup>
 
               </Form>
@@ -262,7 +262,7 @@ function Register() {
               <figure><img src={SignUp} alt="sign up image" /></figure>
               <a onClick={() => {
                 navigate("/login");
-              }} className="signup-image-link" style={{ cursor: "pointer" }}>I am already member</a>
+              }} className="signup-image-link underline" style={{ cursor: "pointer",color:"blue" }}>I am already member</a>
             </div>
           </div>
         </div>

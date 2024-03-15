@@ -126,7 +126,7 @@ function TopNav() {
               </li>
               <li className='mr-4 py-3 text-[20px] hover:scale-105 hover:underline'>
               <NavItem>
-            <NavLink href="/register" >Register</NavLink>
+            <NavLink href="/register" >Sign Up</NavLink>
           </NavItem>              
           </li>
             </div>

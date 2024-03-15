@@ -96,15 +96,18 @@ function EventsPage() {
   };
 
   return (
+    
     <div className="bg-primary-black h-auto">
+      
     <TopNav/>
    <Container className="p-8 rounded-lg">
   <h2 className="text-3xl font-semibold text-center mb-6 fontype">CREATE YOUR EVENT</h2>
 
   <Form onSubmit={handleEventSubmit}>
     <FormGroup className="mb-4 position-relative flex ">
-      <Label for="exampleTitle">Event Title</Label>
+      <Label for="exampleTitle ">Event Title</Label>
       <Input
+        className="ml-16"
         bsSize="lg"
         id="title"
         type="text"
@@ -117,6 +120,7 @@ function EventsPage() {
     <FormGroup className="mb-4 flex">
       <Label for="exampleText">Event Description</Label>
       <Input
+        className="ml-4"
         bsSize="lg"
         id="description"
         type="textarea"
@@ -129,6 +133,7 @@ function EventsPage() {
     <FormGroup className="mb-4 flex">
       <Label for="exampleSelect">Event Type</Label>
       <Input
+        className="ml-14"
         type="select"
         name="select"
         id="exampleSelect"
@@ -145,8 +150,8 @@ function EventsPage() {
 
     <FormGroup className="mb-4 flex">
       <Label for="exampleText">Event Price</Label>
-      <InputGroup className="flex">
-        <InputGroupText addonType="prepend">₹</InputGroupText>
+      <InputGroup className="flex ml-12">
+        <InputGroupText addonType="prepend"> ₹</InputGroupText>
         <Input
           id="price"
           type="number"
@@ -162,6 +167,7 @@ function EventsPage() {
     <FormGroup className="mb-4 flex">
       <Label for="datefield">Select Date</Label>
       <Input
+        className="ml-[47px]"
         id="datefield"
         type="date"
         value={date}
@@ -173,6 +179,7 @@ function EventsPage() {
     <FormGroup className="mb-4 flex">
       <Label for="exampleFile">Thumbnail</Label>
       <Input
+        className="ml-12"
         id="thumbnail"
         type="file"
         onChange={(event) => setThumbnail(event.target.files[0])}
@@ -209,10 +216,9 @@ function EventsPage() {
     ) : (
       ""
     )}
-  </Form>
-</Container>
-
-    </div>
+      </Form>
+    </Container>
+  </div>
   );
 }
 

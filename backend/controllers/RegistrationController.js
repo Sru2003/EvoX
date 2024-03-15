@@ -21,9 +21,7 @@ module.exports = {
         const { eventId } = req.params;
         var date = new Date();
         date = date.toDateString();
-       
 
-        
         const registration = await Registration.create({
           date: date,
           user: user_id,

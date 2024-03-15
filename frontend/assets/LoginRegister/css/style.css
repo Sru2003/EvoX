@@ -455,13 +455,14 @@ figure {
 }
 
 input {
-  width: 75%;
+  width: 100%;
   display: block;
   border: none;
-  border-bottom: 1px solid #999;
-  padding: 6px 30px;
+  border-bottom: 1px solid ;
+  padding: 6px;
   font-family: Poppins;
   box-sizing: border-box;
+
 }
 input::-webkit-input-placeholder {
   color: #999;
