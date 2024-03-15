@@ -35,7 +35,7 @@ export default function MyRegistrations() {
             console.log(error);
         }
     }
-
+   
     return (
         <div className="bg-primary-black h-auto">
         <TopNav/>

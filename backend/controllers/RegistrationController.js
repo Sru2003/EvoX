@@ -2,9 +2,17 @@ const { json } = require("express");
 const Registration = require("../models/Registration");
 const jwt = require('jsonwebtoken');
 const Events = require("../models/Events");
+const stripe = require('stripe')('sk_test_51ObnL1SIykYbdg05pUwFD82DDDrci0g7IjFzeryjTAa18LqngoDQo0F6d9sB2DihuESoMXLl3rnaPqEX4tGNXHbj00gnnCkLA9');
+const Razorpay = require('razorpay');
+const emailjs = require('emailjs-com');
+// const instance = require('../server');
 
+const instance = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET
+})
 module.exports = {
-  create(req, res) {
+  async create(req, res) {
     jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
       if (err) {
         res.sendStatus(401);
@@ -13,11 +21,13 @@ module.exports = {
         const { eventId } = req.params;
         var date = new Date();
         date = date.toDateString();
+       
 
+        
         const registration = await Registration.create({
           date: date,
           user: user_id,
-          event: eventId
+          event: eventId,  
         });
 
         // await registration
@@ -38,17 +48,53 @@ console.log(populatedRegistration);
         registration.userEmail = registration.user.email;
         registration.save();
 
-        const ownerSocket = req.connectedUsers[registration.event.user];
 
-        if (ownerSocket) {
-          req.io.to(ownerSocket).emit('registration_request', registration);
-        }
+        const options = {
+          amount: Number(registration.eventPrice)*100,  // amount in the smallest currency unit
+          currency: "INR",
+        };
+        const order=await instance.orders.create(options); 
+       
+        const templateParams = {
+          // to_name: 'Client Name',
+          to_email:registration.user.email,
+          event_title: registration.event.title,
+          event_date: registration.event.date,
+          event_id: registration.event.eventId,
+          event_price: registration.event.price,
+          // email_id: 
+        };
+      
+        emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams)
+          .then((response) => {
+            console.log('Email sent:', response);
+            res.send({ success: true });
+          })
+          .catch((error) => {
+            console.error('Error sending email:', error);
+            res.status(500).send({ success: false, error: 'Failed to send email' });
+          });
+         console.log(order);
 
-        return res.json(registration);
+
+        // const ownerSocket = req.connectedUsers[registration.event.user];
+
+        // if (ownerSocket) {
+        //   req.io.to(ownerSocket).emit('registration_request', registration);
+        // }
+        //  return res.json(registration,order);
+        return res.status(200).json({ registration, order });
+
       }
     })
   },
 
+ async paymentVerification(req, res) {
+  console.log(req.body);
+    res.status(200).json({
+      success:true,
+    })
+ },
   async getRegistration(req, res) {
     const { registrationId } = req.params;
     console.log(req.params);

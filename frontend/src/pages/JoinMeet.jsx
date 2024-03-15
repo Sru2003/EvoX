@@ -16,7 +16,7 @@ const JoinMeet = () => {
   };
 
   return (
-    <div className=" ">
+    <div className=" bg-primary-black">
       {/* Navbar */}
       <TopNav />
       {/* Hero */}

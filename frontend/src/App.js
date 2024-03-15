@@ -8,7 +8,7 @@ import Register from "./pages/Register";
 //import Login from "./pages/Login/index";
 //import Register from "./pages/Register/index";
 import Room from "./pages/Room";
-import { RoomProvider } from "./context/RoomContext";
+//import { RoomProvider } from "./context/RoomContext";
 import { ContextProvider } from "./context/Context";
 import ViewParticipants from "./pages/ViewParticipants";
 import ViewEvent from "./components/DetailedEvents/ViewEvent";
@@ -24,7 +24,7 @@ function App() {
       <ContextWrapper>
       <Router>
         
-          <ContextProvider>
+          {/* <ContextProvider> */}
             <div>
             
               <Routes>
@@ -39,9 +39,10 @@ function App() {
                 <Route path="/myregistrations" element={<MyRegistrations />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/room/:roomID" element={<Room />} />
+                {/* <Route path="/chat" element={<Chat />} /> */}
                </Routes>
             </div>
-          </ContextProvider>
+          {/* </ContextProvider> */}
         
       </Router>
       </ContextWrapper>

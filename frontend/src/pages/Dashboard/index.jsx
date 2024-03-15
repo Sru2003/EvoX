@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 import socketio from 'socket.io-client';
 import { useNavigate } from "react-router-dom"
 import TopNav from '../../components/TopNav'
+import CheckoutButton from "../../components/CheckoutButton";
+import axios from "axios";
 export default function Dashboard() {
   const [events, setEvents] = useState([]);
   const user = localStorage.getItem("user");
   const user_id = localStorage.getItem("user_id");
-
   const [rSelected, setRSelected] = useState(null);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -22,19 +23,39 @@ export default function Dashboard() {
   const [eventRequestSuccess, setEventRequestSuccess] = useState(false);
   const navigate = useNavigate();
   const toggle = () => setDropdownOpen(!dropdownOpen);
-
+  // const closedEvent=new Date(event.date)<new Date();
   useEffect(() => {
     getEvents();
   }, []);
 
-  const socket = useMemo(() =>
-    socketio('http://localhost:3000/', { query: { user: user_id } }),
-    [user_id]
-  );
+  // const socket = useMemo(() =>
+  //   socketio('http://localhost:3000/', { query: { user: user_id } }),
+  //   [user_id]
+  // );
 
-  useEffect(() => {
-    socket.on('registration_request', data => (setEventRequests([...eventRequests, data])));
-  }, [eventRequests, socket]);
+  // useEffect(() => {
+  //   socket.on('registration_request', data => (setEventRequests([...eventRequests, data])));
+  // }, [eventRequests, socket]);
+
+  
+  
+  const updateParticipantStatus = (eventId, userId, approved) => {
+    setEvents(prevEvents => {
+      const updatedEvents = prevEvents.map(event => {
+        if (event._id === eventId) {
+          const updatedParticipants = event.participants.map(participant => {
+            if (participant.user === userId) {
+              return { ...participant, approved: approved };
+            }
+            return participant;
+          });
+          return { ...event, participants: updatedParticipants };
+        }
+        return event;
+      });
+      return updatedEvents;
+    });
+  };
 
   const filterHandler = (query) => {
     setRSelected(query);
@@ -74,7 +95,102 @@ export default function Dashboard() {
       }, 2000);
     }
   };
+  // const registrationRequestHandler = async (event) => {
+  //   try {
+      
+  //     const {data:{key}}=await axios.get('http://localhost:3000/api/getkey')
+  //     console.log(key)
+  //     const {data:{registration,order}}=await api.post(`/registration/${event.id}`, {}, { headers: { user } });
+  //     console.log(registration)
+  //     console.log(order)
+  //     const options = {
+  //       key, // Enter the Key ID generated from the Dashboard
+  //       amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+  //       currency: "INR",
+  //       name: "EvoX",
+  //       description: "Test Transaction",
+  //       // image: "https://example.com/your_logo",
+  //       order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+  //       callback_url: "https://localhost:3000/api/paymentVerification",
+  //       prefill: {
+  //           name: user.name,
+  //           email: user.email,
+  //           contact: "9000090000"
+  //       },
+  //       notes: {
+  //           "address": "Razorpay Corporate Office"
+  //       },
+  //       theme: {
+  //           "color": "#3399cc"
+  //       }
+  //   };
+  //   const razor = new window.Razorpay(options);
+  //   razor.open();
+  //     setSuccess(true);
+  //     setMessageHandler(`The registration request for the event ${event.title} made successfully!`);
+  //     setTimeout(() => {
+  //       setSuccess(false);
+  //       filterHandler(null);
+  //       setMessageHandler('');
+  //     }, 2500);
+  //   } catch (error) {
+  //     setError(true);
+  //     setMessageHandler('Error while registering for event!');
+  //     setTimeout(() => {
+  //       setError(false);
+  //       setMessageHandler('');
+  //     }, 2000);
+  //   }
+  // }
 
+  const registrationRequestHandler = async (event) => {
+    try {
+      const { data: { key } } = await axios.get('http://localhost:3000/api/getkey');
+      console.log(key);
+      const { data: { registration, order } } = await api.post(`/registration/${event.id}`, {}, { headers: { user } });
+      console.log(registration);
+      console.log(order);
+      const options = {
+        key, // Enter the Key ID generated from the Dashboard
+        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: "INR",
+        name: "EvoX",
+        description: "Test Transaction",
+        // image: "https://example.com/your_logo",
+        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        callback_url: "https://localhost:3000/api/paymentVerification",
+        prefill: {
+            name: user.name,
+            email: user.email,
+            contact: "9000090000"
+        },
+        notes: {
+            "address": "Razorpay Corporate Office"
+        },
+        theme: {
+            "color": "#3399cc"
+        }
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+      setSuccess(true);
+      setMessageHandler(`The registration request for the event ${event.title} made successfully!`);
+      setTimeout(() => {
+        setSuccess(false);
+        filterHandler(null);
+        setMessageHandler('');
+      }, 2500);
+    } catch (error) {
+      setError(true);
+      setMessageHandler('Error while registering for event!');
+      console.error(error); // Log the error for debugging purposes
+      setTimeout(() => {
+        setError(false);
+        setMessageHandler('');
+      }, 2000);
+    }
+  }
+  
   const getEvents = async (filter) => {
     try {
       const url = filter ? `/dashboard/${filter}` : "/dashboard";
@@ -86,25 +202,8 @@ export default function Dashboard() {
     }
   };
 
-  const registrationRequestHandler = async (event) => {
-    try {
-      await api.post(`/registration/${event.id}`, {}, { headers: { user } });
-      setSuccess(true);
-      setMessageHandler(`The registration request for the event ${event.title} made successfully!`);
-      setTimeout(() => {
-        setSuccess(false);
-        filterHandler(null);
-        setMessageHandler('');
-      }, 2500);
-    } catch (error) {
-      setError(true);
-      setMessageHandler('Error while registering for event!');
-      setTimeout(() => {
-        setError(false);
-        setMessageHandler('');
-      }, 2000);
-    }
-  }
+  
+
 
   const viewParticipantsHandler = async (event) => {
     try {
@@ -215,7 +314,6 @@ export default function Dashboard() {
                     <h2 className="text-[18px]" style={{ height: "48px"}}>{event.title}</h2>
                     <p><b>Date:</b> {moment(event.date).format("LL")}</p>
                     <p><b>Price:</b> ₹{event.price} </p>
-                    <p><b>Status:</b> {event.approved ? 'Approved' : 'Pending Approval'}</p>
                     
                       <Link onClick={() => { linkToEvent(event._id) }} >
                       Link to Event
@@ -224,15 +322,26 @@ export default function Dashboard() {
                   </div>
                   <center>
                     {event.user !== user_id ? (
-                      <div>
-                        <Button style={{ width: "100%" }} color="primary" onClick={() => registrationRequestHandler(event)}>Registration Request</Button>
-                      </div>
+                      <div> 
+                      {/* {closedEvent ? <p>Not Available</p> : */}
+                     
+                     
+                          <button type="submit"
+                            onClick={() => registrationRequestHandler(event)} 
+                          // onClick={()=>handleCheckout(event)}
+                           style={{ width: "100%" }}
+                           className=" hover:bg-blue-200 font-bold py-2 px-4 rounded">
+                            {event.price === 0 ? 'Register' : 'Buy Ticket'}
+                          </button>
+                        
+                          {/* } */}
+                  </div>
                     ) : (
                       <div>
-                          <Button style={{ width: "100%" }}
+                          <button style={{ width: "100%" }}
                             className=" hover:bg-blue-200 font-bold py-2 px-4 rounded"
                             onClick={() => viewParticipantsHandler(event._id)}>View Participants
-                          </Button>
+                          </button>
                       </div>
                     )}
                   </center>
@@ -248,7 +357,15 @@ export default function Dashboard() {
                       </Button>
                     </div>
                   ) : (
-                    ""
+                    
+                      event.approved?(<Button className="delete-btn px-8 mb-8"
+                      size="sm"
+                      onClick={() => deleteEventHandler(event._id)}
+                    >
+                      Payment
+                    </Button>)
+                      :("")
+                    
                   )}
                 </header>
               </li>
