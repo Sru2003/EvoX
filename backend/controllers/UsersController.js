@@ -17,6 +17,7 @@ module.exports = {
           password: hashPassword,
         });
 
+        console.log(userResponse);
         return jwt.sign({ user: userResponse }, process.env.JWT_SECRET, (err, token) => {
           return res.json({
             user: token,

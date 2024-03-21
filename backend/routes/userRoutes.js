@@ -15,7 +15,7 @@ const upload = multer(uploadConfig);
 const EventController = require("../controllers/EventController");
 const DashboardController = require("../controllers/DashboardController");
 const LoginController = require("../controllers/LoginController");
-const UserController = require("../controllers/UserController");
+const UserController = require("../controllers/UsersController");
 
 const RegistrationController = require("../controllers/RegistrationController");
 const ApprovalController = require("../controllers/ApprovalController");
