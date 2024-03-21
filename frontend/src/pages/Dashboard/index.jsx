@@ -21,6 +21,7 @@ export default function Dashboard() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [eventRequestMessage, setEventRequestMessage] = useState('');
   const [eventRequestSuccess, setEventRequestSuccess] = useState(false);
+  const [showEventLink,setShowEventLink]=useState(false);
   const navigate = useNavigate();
   const toggle = () => setDropdownOpen(!dropdownOpen);
   // const closedEvent=new Date(event.date)<new Date();
@@ -111,7 +112,18 @@ export default function Dashboard() {
         description: "Test Transaction",
         // image: "https://example.com/your_logo",
         order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        callback_url: "https://localhost:3000/api/paymentVerification",
+        // callback_url: "http://localhost:3000/api/paymentVerification",
+        handler:async (response)=>{
+        try{
+          setShowEventLink(true);
+        // const {data}=await api.post(`/paymentVerification/${event.id}`,response);
+        // console.log(data)
+      }
+          catch(error){
+            console.log(error);
+          }
+         
+      },
         prefill: {
             name: user.name,
             email: user.email,
@@ -127,7 +139,8 @@ export default function Dashboard() {
     const razor = new window.Razorpay(options);
     razor.open();
       setSuccess(true);
-      setMessageHandler(`The registration request for the event ${event.title} made successfully!`);
+      setMessageHandler(`The registration for the event ${event.title} made successfully!`);
+   
       setTimeout(() => {
         setSuccess(false);
         filterHandler(null);
@@ -210,8 +223,10 @@ export default function Dashboard() {
   }
 
   const linkToEvent = (_id) => {
+    console.log(_id)
     localStorage.setItem("eventId", _id)
-    navigate('/eventdetails')
+    // navigate('/eventdetails')
+    navigate(`/room/${_id}`)
     // console.log('abc')
   }
   return (
@@ -268,11 +283,17 @@ export default function Dashboard() {
                     <h2 className="text-[18px]" style={{ height: "48px"}}>{event.title}</h2>
                     <p><b>Date:</b> {moment(event.date).format("LL")}</p>
                     <p><b>Price:</b> ₹{event.price} </p>
-                    
-                      <Link onClick={() => { linkToEvent(event._id) }} >
+                    {event.user !== user_id ? (
+                    <div>
+                       {showEventLink && <Button onClick={() => { linkToEvent(event._id) }} >
                       Link to Event
-                      </Link>
-                      
+                      </Button>}
+                    </div>
+                    ):(<div>
+                      <Button onClick={() => { linkToEvent(event._id) }} >
+                     <u> Link to Event</u>
+                      </Button>
+                    </div>)}
                   </div>
                   <center>
                     {event.user !== user_id ? (

@@ -6,7 +6,7 @@ const stripe = require('stripe')('sk_test_51ObnL1SIykYbdg05pUwFD82DDDrci0g7IjFze
 const Razorpay = require('razorpay');
 const emailjs = require('emailjs-com');
 // const instance = require('../server');
-
+const crypto=require('crypto')
 const instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET
@@ -44,6 +44,7 @@ console.log(populatedRegistration);
         registration.eventPrice = registration.event.price;
         registration.eventDate = registration.event.date;
         registration.userEmail = registration.user.email;
+        registration.approved=true;
         registration.save();
 
 
@@ -81,25 +82,8 @@ console.log(populatedRegistration);
           const order = await instance.orders.create(options); 
           console.log('Order created:', order);
         
-          const templateParams = {
-            to_email:registration.user.email,
-              event_title: registration.event.title,
-              event_date: registration.event.date,
-              event_id: registration.event.eventId,
-              event_price: registration.event.price,
-                        };
-        
-          // Send email using emailjs
-          emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams,'Um5AebFL2fpSvANlG')
-            .then((response) => {
-              console.log('Email sent:', response);
-              res.send({ success: true });
-            })
-            .catch((error) => {
-              console.error('Error sending email:', error);
-              // res.status(500).send({ success: false, error: 'Failed to send email' });
-            });
-        
+// Emailjs logic 
+
           // Return response
           return res.status(200).json({ registration, order });
         } catch (error) {
@@ -113,10 +97,43 @@ console.log(populatedRegistration);
   },
 
  async paymentVerification(req, res) {
-  console.log(req.body);
-    res.status(200).json({
-      success:true,
-    })
+  jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
+    if (err) {
+      res.sendStatus(401);
+    } else {
+      try {
+        const { eventId } = req.params;
+    const{razorpay_order_id,
+    razorpay_payment_id,
+  razorpay_signature}=req.body;
+  const sign= razorpay_order_id + '|' + razorpay_payment_id;
+  const expectedSign= crypto.createHmac("sha256",process.env.RAZORPAY_KEY_SECRET)
+  .update(sign.toString())
+  .digest("hex");
+  if(razorpay_signature == expectedSign){
+   
+    const registrationArr = await Registration.find({ "user": authData.user });
+    let populatedRegistration = null;
+    
+    for (const registration of registrationArr) {
+        if (registration.event._id === eventId) {
+            populatedRegistration = await registration.populate("event").populate("user", "-password");
+            break; // Once found, exit the loop
+        }
+    }
+console.log('hi')
+    console.log(populatedRegistration);
+
+    return res.status(200).json({message:"Payment verified successfully"});
+  }else{
+    return res.status(400).json({message:"Invalid signature sent!"});
+  }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(({message:"Internal Server Error!"}))
+  }
+}
+  })
  },
   async getRegistration(req, res) {
     const { registrationId } = req.params;

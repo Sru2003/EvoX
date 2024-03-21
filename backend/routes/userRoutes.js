@@ -90,5 +90,5 @@ router.get(
   EventController.getEventDetails
 );
 
- router.post("/api/paymentVerification", RegistrationController.paymentVerification);
+ router.post("/paymentVerification/:eventId", RegistrationController.paymentVerification);
 module.exports = router
