@@ -20,7 +20,7 @@ const server = http.createServer(app)
 const io = new Server(server,
     {
         cors: {
-            origin: "*",
+            origin: ["http://localhost:3000", "https://evox-app.onrender.com"],
             methods: ["GET", "POST"]
         },
         transports: ['websocket']

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 import TopNav from '../../components/TopNav'
 import CheckoutButton from "../../components/CheckoutButton";
 import axios from "axios";
+
 export default function Dashboard() {
   const [events, setEvents] = useState([]);
   const user = localStorage.getItem("user");
