@@ -156,7 +156,7 @@ function Login() {
 
   return (
 
-    <div className="main h-auto" style={{ backgroundImage: `url(/bkgnd.png)`, backgroundRepeat: "no-repeat", backgroundPosition: 'center',backgroundSize:'cover' }}>
+    <div className="main min-h-screen" style={{ backgroundImage: `url(/bkgnd.png)`, backgroundRepeat: "no-repeat", backgroundPosition: 'center',backgroundSize:'cover' }}>
       <section className="sign-in">
         <div className="mb-4">
         <div className="container">
@@ -200,7 +200,7 @@ function Login() {
                   />
                 </div>
                 <FormGroup>
-                  <Button color="success" className="special-btn " size="lg">Submit</Button>
+                  <Button color="success" className="special-btn ml-2" size="lg">Submit</Button>
                 </FormGroup>
 
               </Form>

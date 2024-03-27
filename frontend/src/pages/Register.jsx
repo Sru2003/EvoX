@@ -196,7 +196,7 @@ function Register() {
   };
 
   return (
-    <div className="main" style={{ backgroundImage: `url(/bkgnd.png)`, backgroundRepeat: "no-repeat", backgroundPosition: 'center', backgroundSize: 'cover' }}>
+    <div className="main min-h-screen" style={{ backgroundImage: `url(/bkgnd.png)`, backgroundRepeat: "no-repeat", backgroundPosition: 'center', backgroundSize: 'cover' }}>
       <section className="signup">
         <div className="container">
           <div className="signup-content">
