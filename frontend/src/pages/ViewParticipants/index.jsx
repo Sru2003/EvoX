@@ -25,7 +25,7 @@ export default function ViewParticipants() {
     }
 
     return (
-        <div className='bg-primary-black h-[1000px] '>
+        <div className='bg-primary-black min-h-screen '>
         <TopNav/>
         <Container className='pt-4 p'>
             <ul className="participants pl-4">

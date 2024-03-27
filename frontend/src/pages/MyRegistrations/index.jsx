@@ -37,7 +37,7 @@ export default function MyRegistrations() {
     }
    
     return (
-        <div className="bg-primary-black h-auto">
+        <div className="bg-primary-black min-h-screen">
         <TopNav/>
     
             <div>

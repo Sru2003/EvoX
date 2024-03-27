@@ -31,7 +31,7 @@ export default function Dashboard() {
   }, []);
 
   // const socket = useMemo(() =>
-  //   socketio('http://localhost:3000/', { query: { user: user_id } }),
+  //   socketio('https://evox-app.onrender.com/', { query: { user: user_id } }),
   //   [user_id]
   // );
 
@@ -100,11 +100,13 @@ export default function Dashboard() {
   const registrationRequestHandler = async (event) => {
     try {
       
-      const {data:{key}}=await axios.get('http://localhost:3000/api/getkey')
+      const {data:{key}}=await axios.get('https://evox-app.onrender.com/api/getkey')
       console.log(key)
       const {data:{registration,order}}=await api.post(`/registration/${event.id}`, {}, { headers: { user } });
       console.log(registration)
       console.log(order)
+    
+
       const options = {
         key, // Enter the Key ID generated from the Dashboard
         amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -113,10 +115,12 @@ export default function Dashboard() {
         description: "Test Transaction",
         // image: "https://example.com/your_logo",
         order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        // callback_url: "http://localhost:3000/api/paymentVerification",
+        // callback_url: "https://evox-app.onrender.com/api/paymentVerification",
         handler:async (response)=>{
         try{
           setShowEventLink(true);
+          const response = await api.post(`/email/${registration._id}`, {}, { headers: { user,registration } });
+
         // const {data}=await api.post(`/paymentVerification/${event.id}`,response);
         // console.log(data)
       }
@@ -141,7 +145,6 @@ export default function Dashboard() {
     razor.open();
       setSuccess(true);
       setMessageHandler(`The registration for the event ${event.title} made successfully!`);
-   
       setTimeout(() => {
         setSuccess(false);
         filterHandler(null);
@@ -258,7 +261,7 @@ export default function Dashboard() {
         : ""}
       
          
-        <div className="bg-primary-black">
+        <div className="bg-primary-black min-h-screen">
           {/* <div className="filter-panel">
             <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg">
               <DropdownToggle color="success" caret>

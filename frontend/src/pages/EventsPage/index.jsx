@@ -97,7 +97,7 @@ function EventsPage() {
 
   return (
     
-    <div className="bg-primary-black h-auto">
+    <div className="bg-primary-black min-h-screen">
       
     <TopNav/>
    <Container className="p-8 rounded-lg">
