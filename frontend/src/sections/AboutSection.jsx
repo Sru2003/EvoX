@@ -25,13 +25,12 @@ const AboutSection = () => {
             text-[20px] text-center text-secondary-white'>
           <span className='font-bold text-white'>EvoX </span>
           , our website, simplifies virtual event management by providing a platform for organizing
-          <span className='font-bold text-white'>  webinars </span>
-          , customized registration
-          <span className='font-bold text-white'> forms </span>
-          , pre-designed email invitations and Instagram ad templates, as well as
-          <span className='font-bold text-white'> live transcriptions </span>
-          and <span className='font-bold text-white'> session summaries </span>
-          .Its user-friendly features offer complete control of services to user, making it the future of event management.
+          <span className='font-bold text-white'>  webinars </span>, easy
+          <span className='font-bold text-white'> event registration </span>
+          , and sending
+          <span className='font-bold text-white'>  email invitations </span>
+           to attendees.
+           Its user-friendly features offer complete control of services to user, making it the future of event management.
         </motion.p>
 
         <motion.img
