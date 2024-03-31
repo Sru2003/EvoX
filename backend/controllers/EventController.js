@@ -10,10 +10,13 @@ module.exports = {
       if (err) {
         res.statusCode(401);
       } else {
-        const { title, description, price, eventType, date } = req.body;
+        const { title, description, price, eventType, date,thumbnail } = req.body;
         // console.log("Event type is " + price);
-        const  location  = req.file.location;
-        
+        // const  location  = req.file.location;
+        console.log("Event type is " + eventType);
+        console.log("Event type is " + price);
+        console.log("Event type is " + date);
+        console.log("Event type is " + thumbnail);
         const user = await User.findById(authData.user._id);
 
         if (!user) {
@@ -27,7 +30,7 @@ module.exports = {
             eventType,
             price: parseFloat(price),
             user: authData.user._id,
-            thumbnail:location,
+            thumbnail,
             date,
           });
 

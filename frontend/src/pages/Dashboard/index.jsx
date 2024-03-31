@@ -263,8 +263,9 @@ export default function Dashboard() {
          
         <div className="bg-primary-black min-h-screen">
            <div className="filter-panel ">
-          <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg" style={{color:'white'}}>
-              <DropdownToggle color="success" caret>
+          <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg" className="ml-8">
+              <DropdownToggle color="success" caret className="mr-8 py-3 text-[20px] button 
+            transition duration-300 ease-in-out transform hover:scale-105">
                 Filter
             </DropdownToggle>
               <DropdownMenu>
