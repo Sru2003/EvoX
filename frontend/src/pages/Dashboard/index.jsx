@@ -262,8 +262,8 @@ export default function Dashboard() {
       
          
         <div className="bg-primary-black min-h-screen">
-          {/* <div className="filter-panel">
-            <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg">
+           <div className="filter-panel ">
+          <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg" style={{color:'white'}}>
               <DropdownToggle color="success" caret>
                 Filter
             </DropdownToggle>
@@ -275,7 +275,7 @@ export default function Dashboard() {
                 <DropdownItem onClick={myEventsHandler} active={rSelected === "myEvents"}>My Events</DropdownItem>
               </DropdownMenu>
             </Dropdown>
-          </div> */}
+          </div> 
         <ul className="events-list  grid grid-cols-1 md:grid-cols-3 gap-4">
             {events.map((event) => (
               <li className="mx-8 md:w-[350px]"
