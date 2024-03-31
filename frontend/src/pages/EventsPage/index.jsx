@@ -58,13 +58,13 @@ function EventsPage() {
   const handleEventSubmit = async (event) => {
     event.preventDefault();
     const eventData = new FormData();
-
     eventData.append("thumbnail", thumbnail);
     eventData.append("eventType", eventType);
     eventData.append("title", title);
     eventData.append("price", price);
     eventData.append("description", description);
     eventData.append("date", date);
+    console.log(eventData);
 
     try {
       if (

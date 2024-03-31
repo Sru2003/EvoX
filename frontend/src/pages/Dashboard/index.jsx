@@ -100,7 +100,7 @@ export default function Dashboard() {
   const registrationRequestHandler = async (event) => {
     try {
       
-      const {data:{key}}=await axios.get('https://evox-app.onrender.com/api/getkey')
+      const {data:{key}}=await api.get('/api/getkey')
       console.log(key)
       const {data:{registration,order}}=await api.post(`/registration/${event.id}`, {}, { headers: { user } });
       console.log(registration)
