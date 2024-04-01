@@ -2,11 +2,9 @@ const { json } = require("express");
 const Registration = require("../models/Registration");
 const jwt = require('jsonwebtoken');
 const Events = require("../models/Events");
-const stripe = require('stripe')('sk_test_51ObnL1SIykYbdg05pUwFD82DDDrci0g7IjFzeryjTAa18LqngoDQo0F6d9sB2DihuESoMXLl3rnaPqEX4tGNXHbj00gnnCkLA9');
 const Razorpay = require('razorpay');
-const emailjs = require('emailjs-com');
-// const instance = require('../server');
 const crypto=require('crypto')
+const nodemailer = require('nodemailer');
 const instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET
@@ -65,16 +63,16 @@ console.log(populatedRegistration);
           // email_id: 
         };
       
-        emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams)
-          .then((response) => {
-            console.log('Email sent:', response);
-            res.send({ success: true });
-          })
-          .catch((error) => {
-            console.error('Error sending email:', error);
-            res.status(500).send({ success: false, error: 'Failed to send email' });
-          });
-         console.log(order);
+        // emailjs.send('service_b5vtsat', 'template_cew2b18', templateParams)
+        //   .then((response) => {
+        //     console.log('Email sent:', response);
+        //     res.send({ success: true });
+        //   })
+        //   .catch((error) => {
+        //     console.error('Error sending email:', error);
+        //     res.status(500).send({ success: false, error: 'Failed to send email' });
+        //   });
+        //  console.log(order);
           
 
         //  return res.status(200).json({ registration, order });
@@ -96,6 +94,59 @@ console.log(populatedRegistration);
     })
   },
 
+  async sendMail(req, res) {
+    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
+      if (err) {
+      res.sendStatus(401);
+      } else {
+      try {
+        const {registrationId} = req.params;
+        const registration= req.headers.registration;
+        console.log(registration);
+        // Create a transporter object using SMTP transport
+        const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+        auth: {
+          user: 'srupednekar15@gmail.com',
+          pass: 'blkpchdculgdukrg'
+        }
+        });
+
+        // Define the email options
+        const mailOptions = {
+        from: 'srupednekar15@gmail.com',
+        to: registration.user.email,
+        subject: 'Successful Registration',
+        text: `Dear User, 
+Thanks for registering for the event ${registration.event.title}.
+Event Tile: ${registration.event.title}
+Event Date: ${registration.event.date}
+Event Price: ${registration.event.price}
+Event Link: https://evox-app.render.com/room/${registration.event.eventId}
+Regards,
+Team EvoX`
+        };
+
+        // Send the email
+        transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending email:', error);
+          res.status(500).send({ success: false, error: 'Failed to send email' });
+        } else {
+          console.log('Email sent:', info.response);
+          res.send({ success: true });
+        }
+        });
+      } catch (error) {
+        console.error('Error creating transporter:', error);
+        res.status(500).send({ success: false, error: 'Failed to create transporter' });
+      }
+      }
+    });
+  },
  async paymentVerification(req, res) {
   jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
     if (err) {

@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser');
-const emailjs = require('emailjs-com');
 const colors = require('colors')
 const dotenv = require('dotenv').config()
 const connectDB = require('./config/db')
