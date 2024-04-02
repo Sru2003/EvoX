@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:5000",
+  "proxy": "https://evox.onrender.com",
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
