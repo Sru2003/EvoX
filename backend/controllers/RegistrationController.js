@@ -94,59 +94,60 @@ console.log(populatedRegistration);
     })
   },
 
-  async sendMail(req, res) {
-    jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
-      if (err) {
+  
+async sendEmail(req,res){
+  jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
+    if (err) {
       res.sendStatus(401);
-      } else {
+    } else {
+      const { registrationId } = req.params;
+      console.log(req.params);
       try {
-        const {registrationId} = req.params;
-        const registration= req.headers.registration;
-        console.log(registration);
-        // Create a transporter object using SMTP transport
-        const transporter = nodemailer.createTransport({
+        const myRegistration = await Registration.findById(registrationId);
+        
+await myRegistration.populate("event")
+registration = await myRegistration.populate("user", "-password")
+     
+     
+      const transporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
+        port: 465,
+        secure: true,
         auth: {
-          user: 'srupednekar15@gmail.com',
-          pass: 'blkpchdculgdukrg'
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD
         }
-        });
-
-        // Define the email options
-        const mailOptions = {
-        from: 'srupednekar15@gmail.com',
+      });
+      
+      const mailOptions = {
+        from: process.env.EMAIL,
         to: registration.user.email,
-        subject: 'Successful Registration',
-        text: `Dear User, 
-Thanks for registering for the event ${registration.event.title}.
-Event Tile: ${registration.event.title}
-Event Date: ${registration.event.date}
-Event Price: ${registration.event.price}
-Event Link: https://evox-app.render.com/room/${registration.event.eventId}
+        subject: 'Successful Event Registration',
+        text: `Hi ${registration.user.firstName} ${registration.user.lastName},
+
+You have successfully registered for the event ${registration.event.title} scheduled for ${registration.event.date}.
+Event Link: https://evox-app.onrender.com/room/${registration.event._id}
+Thank you for registering!
 Regards,
 Team EvoX`
-        };
-
-        // Send the email
-        transporter.sendMail(mailOptions, (error, info) => {
+        
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.error('Error sending email:', error);
-          res.status(500).send({ success: false, error: 'Failed to send email' });
+          console.log(error);
         } else {
-          console.log('Email sent:', info.response);
-          res.send({ success: true });
+          console.log('Email sent: ' + info.response);
         }
-        });
+      });
+      return res.status(200).json({message:"Email sent successfully"});
+    
       } catch (error) {
-        console.error('Error creating transporter:', error);
-        res.status(500).send({ success: false, error: 'Failed to create transporter' });
-      }
-      }
-    });
-  },
+        console.log(error);
+      }}
+  })},
+
  async paymentVerification(req, res) {
   jwt.verify(req.token, process.env.JWT_SECRET, async (err, authData) => {
     if (err) {

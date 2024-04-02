@@ -89,6 +89,6 @@ router.get(
   verifyToken,
   EventController.getEventDetails
 );
-router.post("/mail", RegistrationController.sendMail);
+router.post("/email/:registrationId",verifyToken, RegistrationController.sendEmail);
  router.post("/paymentVerification/:eventId", RegistrationController.paymentVerification);
 module.exports = router

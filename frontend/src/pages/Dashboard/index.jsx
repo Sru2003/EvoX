@@ -119,8 +119,7 @@ export default function Dashboard() {
         handler:async (response)=>{
         try{
           setShowEventLink(true);
-          const response = await api.post(`/email/${registration._id}`, {}, { headers: { user,registration } });
-
+          const response =await api.post(`/email/${registration._id}`, {}, { headers: { user,registration } });
         // const {data}=await api.post(`/paymentVerification/${event.id}`,response);
         // console.log(data)
       }
