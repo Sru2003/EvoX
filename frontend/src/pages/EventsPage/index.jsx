@@ -51,9 +51,20 @@ function EventsPage() {
 
   const toggle = () => setOpen(!dropdownOpen);
 
-  const preview = useMemo(() => {
-    return thumbnail ? URL.createObjectURL(thumbnail) : null;
-  }, [thumbnail]);
+  // const preview = useMemo(() => {
+  //   return thumbnail ? URL.createObjectURL(thumbnail) : null;
+  // }, [thumbnail]);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setThumbnail(reader.result); // Store the base64 string
+      
+      // setPreview(reader.result); // Update the preview URL
+    };
+  };
 
   const handleEventSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +76,7 @@ function EventsPage() {
     eventData.append("description", description);
     eventData.append("date", date);
     console.log(thumbnail);
+
 
     try {
       if (
@@ -176,15 +188,25 @@ function EventsPage() {
       />
     </FormGroup>
 
-    <FormGroup className="mb-4 flex">
+    {/* <FormGroup className="mb-4 flex">
       <Label for="exampleFile">Thumbnail</Label>
       <Input
         className="ml-12"
         id="thumbnail"
         type="file"
         onChange={(event) => setThumbnail(event.target.files[0])}
-      />
+      /> */}
       {/* <FileBase type="file" multiple={false} onDone={({ base64 }) => setThumbnail(base64)} /> */}
+    {/* </FormGroup> */}
+    <FormGroup className="mb-4 flex">
+      <Label for="exampleFile">Thumbnail</Label>
+      <Input
+        className="ml-12"
+        id="thumbnail"
+        type="file"
+        onChange={handleFileChange}
+      />
+     
     </FormGroup>
 
     <FormGroup className="flex justify-between">

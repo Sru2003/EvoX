@@ -13,10 +13,10 @@ module.exports = {
         const { title, description, price, eventType, date,thumbnail } = req.body;
         // console.log("Event type is " + price);
         // const  location  = req.file.location;
-        console.log("Event type is " + eventType);
-        console.log("Event type is " + price);
-        console.log("Event type is " + date);
-        console.log("Event type is " + thumbnail);
+        console.log( eventType);
+        console.log( price);
+        console.log( date);
+        console.log("Thumbnail"+ thumbnail);
         const user = await User.findById(authData.user._id);
 
         if (!user) {
