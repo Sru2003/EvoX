@@ -126,7 +126,7 @@ registration = await myRegistration.populate("user", "-password")
         subject: 'Successful Event Registration',
         text: `Hi ${registration.user.firstName} ${registration.user.lastName},
 
-You have successfully registered for the event ${registration.event.title} scheduled for ${registration.event.date}.
+You have successfully registered for the event ${registration.event.title} scheduled for ${registration.event.date.toDateString()}.
 Event Link: https://evox-app.onrender.com/room/${registration.event._id}
 Thank you for registering!
 Regards,

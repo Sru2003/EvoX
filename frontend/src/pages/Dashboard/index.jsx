@@ -263,17 +263,24 @@ export default function Dashboard() {
         <div className="bg-primary-black min-h-screen">
            <div className="filter-panel ">
           <Dropdown isOpen={dropdownOpen} toggle={toggle} size="lg" className="ml-8">
-              <DropdownToggle color="success" caret className="mr-8 py-3 text-[20px] button 
+              <DropdownToggle color="success" caret="true" className="mr-8 py-3 text-[20px] button 
             transition duration-300 ease-in-out transform hover:scale-105">
                 Filter
             </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={() => filterHandler(null)} active={rSelected === null}>All Events</DropdownItem>
-                <DropdownItem onClick={() => filterHandler("webinar")} active={rSelected === "webinar"}>Webinar</DropdownItem>
-                <DropdownItem onClick={() => filterHandler("workshop")} active={rSelected === "workshop"}>Workshop</DropdownItem>
-                <DropdownItem onClick={() => filterHandler("seminar")} active={rSelected === "seminar"}>Seminar</DropdownItem>
-                <DropdownItem onClick={myEventsHandler} active={rSelected === "myEvents"}>My Events</DropdownItem>
-              </DropdownMenu>
+              <DropdownMenu className={dropdownOpen ? "" : "bg-white p-2"} style={{ width: "100px" }} > 
+
+                   <div>                <DropdownItem onClick={() => filterHandler(null)} active={rSelected === null}>All Events</DropdownItem>
+</div>
+<div>                <DropdownItem onClick={() => filterHandler("webinar")} active={rSelected === "webinar"}>Webinar</DropdownItem>
+</div>
+<div>                <DropdownItem onClick={() => filterHandler("workshop")} active={rSelected === "workshop"}>Workshop</DropdownItem>
+</div>
+<div>                <DropdownItem onClick={() => filterHandler("seminar")} active={rSelected === "seminar"}>Seminar</DropdownItem>
+
+</div>
+<div>                <DropdownItem onClick={myEventsHandler} active={rSelected === "myEvents"}>My Events</DropdownItem>
+
+</div>              </DropdownMenu>
             </Dropdown>
           </div> 
         <ul className="events-list  grid grid-cols-1 md:grid-cols-3 gap-4">
