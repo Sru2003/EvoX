@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Virtual Event Organising Platform",
   "main": "server.js",
-  "proxy": "https://evox.onrender.com",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "node backend/server.js ",
     "server": "nodemon backend/server.js",

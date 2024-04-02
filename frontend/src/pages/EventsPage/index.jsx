@@ -64,7 +64,7 @@ function EventsPage() {
     eventData.append("price", price);
     eventData.append("description", description);
     eventData.append("date", date);
-    console.log(eventData);
+    console.log(thumbnail);
 
     try {
       if (
