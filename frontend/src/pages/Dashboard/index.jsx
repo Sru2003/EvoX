@@ -19,7 +19,7 @@ export default function Dashboard() {
   const [success, setSuccess] = useState(false);
   const [messageHandler, setMessageHandler] = useState('');
   const [eventRequests, setEventRequests] = useState([]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(true);
   const [eventRequestMessage, setEventRequestMessage] = useState('');
   const [eventRequestSuccess, setEventRequestSuccess] = useState(false);
   const [showEventLink,setShowEventLink]=useState(false);
