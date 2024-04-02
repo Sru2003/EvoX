@@ -296,9 +296,7 @@ export default function Dashboard() {
                     <p><b>Price:</b> ₹{event.price} </p>
                     {event.user !== user_id ? (
                     <div>
-                       {showEventLink && <Button onClick={() => { linkToEvent(event._id) }} >
-                      Link to Event
-                      </Button>}
+                      <></>
                     </div>
                     ):(<div>
                       <Button onClick={() => { linkToEvent(event._id) }} >
