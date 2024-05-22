@@ -61,7 +61,7 @@ To install and clone the library from [GitHub](https://github.com/Sru2003/EvoX),
 ## Contributors
 
 - [Sru2003](https://github.com/Sru2003)
-- [r1cha7](https://github.com/r1cha7)
+- [r1cha03]((https://github.com/r1cha03))
 
 ## Steps for Making This Project Work:
 
